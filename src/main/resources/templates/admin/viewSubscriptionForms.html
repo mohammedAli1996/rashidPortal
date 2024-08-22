@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms Management</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">View Subscription Form Details</h1>
+        <form id="packageForm">
+            <div class="mb-3">
+                <label for="formtitle" class="form-label">Form Title</label>
+                <input type="text" class="form-control" id="formtitle" placeholder="Enter Form Title" disabled>
+            </div>
+            <div class="mb-3">
+                <label for="formDescription" class="form-label">Form Description</label>
+                <textarea class="form-control" id="formDescription" rows="3" placeholder="Enter Form description"
+                    disabled></textarea>
+            </div>
+        </form>
+
+        <h2 class="mt-5">Form Questions</h2>
+        <button type="button" class="btn btn-primary" onclick="showModal()">Add new
+            Question</button>
+
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Question</th>
+                    <th scope="col">Question Type</th>
+                    <th scope="col">Options</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="packagesTableBody">
+                <!-- Package rows will be added here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="addQuestionModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addQuestionModalLabel">Add New Question</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addQuestionForm">
+                        <div class="mb-3">
+                            <label for="questionText" class="form-label">Question</label>
+                            <input type="text" class="form-control" id="questionText" placeholder="Enter your question">
+                        </div>
+                        <div class="mb-3">
+                            <label for="questionType" class="form-label">Question Type</label>
+                            <select class="form-control" id="questionType">
+                                <option value="TEXT">TEXT</option>
+                                <option value="RADIO">Single Choice</option>
+                                <option value="MULTI">Multiple Choice</option>
+                                <option value="FILE">FILE</option>
+                            </select>
+                        </div>
+                        <div id="optionsContainer" class="mb-3" style="display:none;">
+                            <!-- <div class="row">
+                                
+                            </div> -->
+                            <button type="button" class="btn btn-warning mb-3" onclick="addNewOption()">Add Option</button> <br>
+                            <label class="form-label">Options</label>
+                            <span id="optionsPLH">
+                                <input type="text" id="opt1" class="form-control mb-2" placeholder="Option 1">
+                            </span>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="saveQuestionButton">Save Question</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div class="modal fade" id="edtModal" tabindex="-1" aria-labelledby="edtModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="edtModalLabel">Edit Question</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addQuestionForm">
+                        <div class="mb-3">
+                            <label for="edtquestionText" class="form-label">Question</label>
+                            <input type="text" class="form-control" id="edtquestionText" placeholder="Enter your question">
+                        </div>
+                        <div class="mb-3">
+                            <label for="edtquestionType" class="form-label">Question Type</label>
+                            <select class="form-control" id="edtquestionType" onchange="changeQType()">
+                                <option value="TEXT">TEXT</option>
+                                <option value="RADIO">Single Choice</option>
+                                <option value="MULTI">Multiple Choice</option>
+                                <option value="FILE">FILE</option>
+                            </select>
+                        </div>
+                        <div id="edtoptionsContainer" class="mb-3" style="display:none;">
+                            <button type="button" class="btn btn-warning mb-3" onclick="addNewEdtOption()">Add Option</button> <br>
+                            <label class="form-label">Options</label>
+                            <span id="edtOptionsPLH"></span>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="updateQuestion()">Update Question</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../../admin/js/viewForm.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Add New Subscription Form</h1>
+        <form id="packageForm">
+            <div class="mb-3">
+                <label for="formtitle" class="form-label">Form Title</label>
+                <input type="text" class="form-control" id="formtitle" placeholder="Enter Form Title" required>
+            </div>
+            <div class="mb-3">
+                <label for="formDescription" class="form-label">Form Description</label>
+                <textarea class="form-control" id="formDescription" rows="3" placeholder="Enter Form description" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+
+        <h2 class="mt-5">All Forms</h2>
+        <table class="table table-striped mt-3">
+            <thead>
+                <tr>
+                    <th scope="col">Form Title</th>
+                    <th scope="col">Form Description</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="packagesTableBody">
+                <!-- Package rows will be added here dynamically -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Fetch existing packages and populate the table
+        window.onload = function() {
+            fetchPackages();
+        };
+
+        document.getElementById('packageForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formtitle = document.getElementById('formtitle').value;
+            const formDescription = document.getElementById('formDescription').value;
+
+            const formPackage = {
+                formtitle: formtitle,
+                formDescription: formDescription
+            };
+
+            fetch('/api/subscription-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formPackage),
+            })
+            .then(response => response.json())
+            .then(data => {
+                addPackageToTable(data);
+                document.getElementById('packageForm').reset();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+        function fetchPackages() {
+            fetch('/api/subscription-form')
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(package => addPackageToTable(package));
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function addPackageToTable(package) {
+            const tableBody = document.getElementById('packagesTableBody');
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${package.formtitle}</td>
+                <td>${package.formDescription}</td>
+                <td><button class="btn btn-secondary" onclick="viewForm('${package.id}')">View</button></td>
+            `;
+            tableBody.appendChild(row);
+        }
+
+        function viewForm(id) {
+            window.location.href = "/adminstration/viewForm?id="+id;
+        }
+    </script>
+</body>
+</html>
