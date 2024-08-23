@@ -1,30 +1,46 @@
 /* Dashboard */
 
-body,label,p,h1,h2,h3,h4,h5,a,th,td{
+
+label,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+a,
+th,
+td {
     color: rgb(255, 255, 255) !important;
 }
 
-textarea{
+textarea {
     color: lightgray !important;
 }
 
 
-textarea:-moz-placeholder, /* Firefox 18- */
-textarea::-moz-placeholder, /* Firefox 19+ */
-textarea:-ms-input-placeholder, /* IE 10+ */
-textarea::-webkit-input-placeholder, /* Webkit based */
-textarea::placeholder { /* Modern browsers */
+textarea:-moz-placeholder,
+/* Firefox 18- */
+textarea::-moz-placeholder,
+/* Firefox 19+ */
+textarea:-ms-input-placeholder,
+/* IE 10+ */
+textarea::-webkit-input-placeholder,
+/* Webkit based */
+textarea::placeholder {
+    /* Modern browsers */
     color: lightgray !important;
 }
 
-textarea::placeholder{
+textarea::placeholder {
     color: lightgray !important;
 
 }
 
-.form-control{
+.form-control {
     color: lightgray !important;
 }
+
 :root {
     --main-color: #7a6fbe;
 
@@ -313,30 +329,31 @@ tr:first-child>td>.fc-day-grid-event {
     border: none !important;
 }
 
-.btn-primary:hover{
+.btn-primary:hover {
     background-color: var(--main-color);
     opacity: 0.8;
 }
 
-.btn-primary:active{
+.btn-primary:active {
     background-color: var(--main-color) !important;
     border: none;
 }
 
-.question{
-    color: red; font-size: 16px;
+.question {
+    color: red;
+    font-size: 16px;
 }
 
-.form-label{
+.form-label {
     font-weight: bold !important;
 }
 
-.normal-weight{
+.normal-weight {
     font-weight: normal !important;
 }
 
-.card-details{
-    font-weight: bold; 
+.card-details {
+    font-weight: bold;
 }
 
 .vl {
@@ -345,25 +362,25 @@ tr:first-child>td>.fc-day-grid-event {
     position: absolute;
     margin-left: -3px;
     top: 0;
-  }
-  
-  .mob-hidden{
+}
+
+.mob-hidden {
     display: block;
-  }
+}
 
 
-  @media (max-width: 575.98px) {
-    .mob-hidden{
+@media (max-width: 575.98px) {
+    .mob-hidden {
         display: none;
     }
-  }
+}
 
 
-  .close{
+.close {
     cursor: pointer;
     font-size: 30px;
-  }
+}
 
-  .card-title{
+.card-title {
     margin-bottom: 15px;
-  }
+}

@@ -7,6 +7,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ViewsController {
 	
+	@GetMapping("/login")
+	public String login() {
+		return "admin/login";
+	}
+	
 	@GetMapping("/adminstration/packageType")
 	public String getPackageTypes() {
 		return "admin/packages";
