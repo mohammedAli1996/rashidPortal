@@ -1,146 +1,303 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+
+    <meta charset="utf-8" />
+    <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forms Management</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
-
+    <link rel="shortcut icon" href="../../assets/images/favicon.png">
+    <link href="../../assets/css/bootstrap-dark.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/app-dark.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="../../assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
 </head>
- 
-<body>
-    <div class="container mt-5">
-        <h1 class="mb-4">View Subscription Form Details</h1>
-        <form id="packageForm">
-            <div class="mb-3">
-                <label for="formtitle" class="form-label">Form Title</label>
-                <input type="text" class="form-control" id="formtitle" placeholder="Enter Form Title" disabled>
-            </div>
-            <div class="mb-3">
-                <label for="formDescription" class="form-label">Form Description</label>
-                <textarea class="form-control" id="formDescription" rows="3" placeholder="Enter Form description"
-                    disabled></textarea>
-            </div>
-        </form>
 
-        <h2 class="mt-5">Form Questions</h2>
-        <button type="button" class="btn btn-primary" onclick="showModal()">Add new
-            Question</button>
+<body data-sidebar="dark">
+    <div id="alertContainer"></div>
 
-        <table class="table table-striped mt-3">
-            <thead>
-                <tr>
-                    <th scope="col">Question</th>
-                    <th scope="col">Question Type</th>
-                    <th scope="col">Options</th>
-                    <th scope="col">Actions</th>
-                </tr>
-            </thead>
-            <tbody id="packagesTableBody">
-                <!-- Package rows will be added here dynamically -->
-            </tbody>
-        </table>
-    </div>
+    <div id="layout-wrapper">
 
-    <!-- Modal -->
-    <div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="addQuestionModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="addQuestionModalLabel">Add New Question</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="addQuestionForm">
-                        <div class="mb-3">
-                            <label for="questionText" class="form-label">Question</label>
-                            <input type="text" class="form-control" id="questionText" placeholder="Enter your question">
+        <div id="header-placeholder">
+
+            <header id="page-topbar">
+                <div class="navbar-header">
+                    <div class="d-flex">
+                        <div class="navbar-brand-box">
+                            <a href="index.html" class="logo logo-dark">
+                                <span class="logo-sm">
+                                    <img src="../../assets/images/logo.png" alt="logo-sm-dark" width="80%">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="../../assets/images/logo.png" alt="logo-dark" width="80%">
+                                </span>
+                            </a>
+
+                            <a href="index.html" class="logo logo-light">
+                                <span class="logo-sm">
+                                    <img src="../../assets/images/logo.png" alt="logo-sm-light" width="80%">
+                                </span>
+                                <span class="logo-lg">
+                                    <img src="../../assets/images/logo.png" alt="logo-light" width="80%">
+                                </span>
+                            </a>
                         </div>
-                        <div class="mb-3">
-                            <label for="questionType" class="form-label">Question Type</label>
-                            <select class="form-control" id="questionType">
-                                <option value="TEXT">TEXT</option>
-                                <option value="RADIO">Single Choice</option>
-                                <option value="MULTI">Multiple Choice</option>
-                                <option value="FILE">FILE</option>
+
+                    </div>
+
+                    <div class="d-flex">
+                        <div class="align-self-center">
+                            <button id="theme-toggle-btn" class="btn btn-icon noti-icon">
+                                <i id="theme-icon" class="ri-sun-line"></i>
+                            </button>
+                        </div>
+
+                        <div class="align-self-center">
+                            <button id="theme-toggle-btn" class="btn btn-icon noti-icon" data-bs-toggle="modal"
+                                data-bs-target="#logoutModal">
+                                <i class="mdi mdi-logout"></i>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </header>
+
+            <div class="vertical-menu">
+
+                <div data-simplebar class="h-100">
+
+                    <div id="sidebar-menu">
+                        <ul class="metismenu list-unstyled" id="side-menu">
+                            <li><a href="/adminstration/packageType">Package </a>
+                            <li><a href="/adminstration/subscriptionForms">Subscription </a>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <div class="main-content" id="result">
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row justify-content-between">
+                                        <div class="col-auto">
+                                            <h4 class="card-title">View Subscription Form Details</h4>
+
+                                        </div>
+                                        <div class="col-auto">
+                                            <a class="btn btn-primary" onclick="showModal()" target="_blank">Add new Question </a>
+
+                                        </div>
+                                    </div>
+                                    <form id="packageForm">
+                                        <div class="mb-3">
+                                            <label for="formtitle" class="form-label">Form Title</label>
+                                            <input type="text" class="form-control" id="formtitle"
+                                                placeholder="Enter Form Title" disabled>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="formDescription" class="form-label">Form Description</label>
+                                            <textarea class="form-control" id="formDescription" rows="3"
+                                                placeholder="Enter Form description" disabled></textarea>
+                                        </div>
+                                    </form>
+
+                                    <br>
+                                    <h4 class="card-title">All Forms</h4>
+
+                                    <table id="datatable" class="table table-bordered dt-responsive nowrap"
+                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>Question</th>
+                                                <th>Question Type</th>
+                                                <th>Options</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="packagesTableBody">
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal fade" id="otpModal" tabindex="-1" aria-labelledby="addQuestionModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addQuestionModalLabel">Add New Question</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                        </div>
+                        <div class="modal-body">
+                            <form id="addQuestionForm">
+                                <div class="mb-3">
+                                    <label for="questionText" class="form-label">Question</label>
+                                    <input type="text" class="form-control" id="questionText"
+                                        placeholder="Enter your question">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="questionType" class="form-label">Question Type</label>
+                                    <select class="form-control" id="questionType">
+                                        <option value="TEXT">TEXT</option>
+                                        <option value="RADIO">Single Choice</option>
+                                        <option value="MULTI">Multiple Choice</option>
+                                        <option value="FILE">FILE</option>
+                                    </select>
+                                </div>
+                                <div id="optionsContainer" class="mb-3" style="display:none;">
+                                    <button type="button" class="btn btn-warning mb-3" onclick="addNewOption()">Add
+                                        Option</button> <br>
+                                    <label class="form-label">Options</label>
+                                    <span id="optionsPLH">
+                                        <input type="text" id="opt1" class="form-control mb-2" placeholder="Option 1">
+                                    </span>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" id="saveQuestionButton">Save
+                                Question</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="modal fade" id="edtModal" tabindex="-1" aria-labelledby="edtModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="edtModalLabel">Edit Question</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                        </div>
+                        <div class="modal-body">
+                            <form id="addQuestionForm">
+                                <div class="mb-3">
+                                    <label for="edtquestionText" class="form-label">Question</label>
+                                    <input type="text" class="form-control" id="edtquestionText"
+                                        placeholder="Enter your question">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="edtquestionType" class="form-label">Question Type</label>
+                                    <select class="form-control" id="edtquestionType" onchange="changeQType()">
+                                        <option value="TEXT">TEXT</option>
+                                        <option value="RADIO">Single Choice</option>
+                                        <option value="MULTI">Multiple Choice</option>
+                                        <option value="FILE">FILE</option>
+                                    </select>
+                                </div>
+                                <div id="edtoptionsContainer" class="mb-3" style="display:none;">
+                                    <button type="button" class="btn btn-warning mb-3" onclick="addNewEdtOption()">Add
+                                        Option</button> <br>
+                                    <label class="form-label">Options</label>
+                                    <span id="edtOptionsPLH"></span>
+                                </div>
+
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="updateQuestion()">Update
+                                Question</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title mt-0" id="myModalLabel">Add a group</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <label class="form-label">Group Name</label>
+                            <input type="text" class="form-control rounded chat-input ps-3" placeholder="">
+                            <br>
+                            <label class="form-label">Group Servers</label>
+                            <select class="form-control  rounded chat-input select2">
+                                <option>Select</option>
+                                <option value="l1">Location1</option>
+                                <option value="l2">Location2</option>
+                                <option value="l3">Location3</option>
                             </select>
                         </div>
-                        <div id="optionsContainer" class="mb-3" style="display:none;">
-                            <!-- <div class="row">
-                                
-                            </div> -->
-                            <button type="button" class="btn btn-warning mb-3" onclick="addNewOption()">Add Option</button> <br>
-                            <label class="form-label">Options</label>
-                            <span id="optionsPLH">
-                                <input type="text" id="opt1" class="form-control mb-2" placeholder="Option 1">
-                            </span>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light waves-effect"
+                                data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary waves-effect waves-light">Save</button>
                         </div>
-                        <button type="button" class="btn btn-primary" id="saveQuestionButton">Save Question</button>
-                    </form>
+                    </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+            </div> -->
+
+        </div>
+
+    </div>
+
+    <div class="right-bar">
+        <div data-simplebar class="h-100">
+            <div class="rightbar-title d-flex align-items-center px-3 py-4">
+
+                <h5 class="m-0 me-2">Settings</h5>
+                <a href="javascript:void(0);" class="right-bar-toggle ms-auto">
+                    <i class="mdi mdi-close noti-icon"></i>
+                </a>
+
             </div>
+
         </div>
     </div>
 
+    <div class="rightbar-overlay"></div>
+
+    <script src="../../assets/libs/jquery/jquery.min.js"></script>
+    <script src="../../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../assets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="../../assets/libs/simplebar/simplebar.min.js"></script>
+    <script src="../../assets/libs/node-waves/waves.min.js"></script>
+    <script src="../../assets/libs/jquery-sparkline/jquery.sparkline.min.js"></script>
+    <script src="../../assets/js/app.js"></script>
+    <script src="../../assets/js/theme.js"></script>
+    <script src="../../assets/js/config/navTest.js"></script>
+    <script src="../../assets/js/config/validator.js"></script>
+    <script src="../../assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script src="../../assets/js/pages/sweet-alerts.init.js"></script>
+    <script src="../../assets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="../../assets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="../../assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="../../assets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="../../assets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+    <script src="../../assets/js/pages/datatables.init.js"></script>
+    <script src="../../js/viewForm.js"></script>
 
 
-
-
-
-
-    <div class="modal fade" id="edtModal" tabindex="-1" aria-labelledby="edtModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="edtModalLabel">Edit Question</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="addQuestionForm">
-                        <div class="mb-3">
-                            <label for="edtquestionText" class="form-label">Question</label>
-                            <input type="text" class="form-control" id="edtquestionText" placeholder="Enter your question">
-                        </div>
-                        <div class="mb-3">
-                            <label for="edtquestionType" class="form-label">Question Type</label>
-                            <select class="form-control" id="edtquestionType" onchange="changeQType()">
-                                <option value="TEXT">TEXT</option>
-                                <option value="RADIO">Single Choice</option>
-                                <option value="MULTI">Multiple Choice</option>
-                                <option value="FILE">FILE</option>
-                            </select>
-                        </div>
-                        <div id="edtoptionsContainer" class="mb-3" style="display:none;">
-                            <button type="button" class="btn btn-warning mb-3" onclick="addNewEdtOption()">Add Option</button> <br>
-                            <label class="form-label">Options</label>
-                            <span id="edtOptionsPLH"></span>
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="updateQuestion()">Update Question</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="../../admin/js/viewForm.js"></script>
 </body>
 
 </html>
