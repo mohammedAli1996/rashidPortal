@@ -7,6 +7,27 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ViewsController {
 	
+	
+	@GetMapping
+	public String rootG() {
+		return "site/index";
+	}
+	
+	
+	@GetMapping("/index")
+	public String index() {
+		return "site/index";
+	}
+	
+	
+	
+	@GetMapping("/subscribe")
+	public String subscribe() {
+		return "site/subscribe";
+	}
+	
+	 
+	
 	@GetMapping("/login")
 	public String login() {
 		return "admin/login";

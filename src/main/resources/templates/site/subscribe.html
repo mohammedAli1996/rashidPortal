@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Form</title>
+	<link rel="stylesheet" href="../../site/assets/css/slick.min.css">
+	<link rel="stylesheet" href="../../site/assets/css/bootstrap-grid.css">
+	<link rel="stylesheet" href="../../site/assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../site/assets/css/style.css">
+</head>
+
+<body>
+
+	<header class="header">
+
+		<div class="top-panel">
+			<div class="container">
+				<div class="header-right">
+					<img class="logo" src="../../site/assets/img/logo.png" alt="">
+
+
+				</div>
+
+				<div class="header-left">
+					<ul class="social-list">
+						<li><a target="_blank" href="https://www.facebook.com/rovadex"><i class="fa fa-snapchat-ghost"
+									aria-hidden="true"></i></a></li>
+						<li><a target="_blank" href="https://twitter.com/RovadexStudio"><i class="fa fa-twitter"
+									aria-hidden="true"></i></a></li>
+						<li><a target="_blank" href="https://www.youtube.com"><i class="fa fa-youtube"
+									aria-hidden="true"></i></a></li>
+						<li><a target="_blank"
+								href="https://www.instagram.com/rashid_alnajem?igsh=MWw0enMwbXprMmZ0cg%3D%3D"><i
+									class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="card-desktop">
+		<div class="progress-bar mt-3 mb-3">
+			<span id="progress-bar"></span>
+		</div>
+
+		<div class="content">
+			<div class="question-container active">
+				<div class="question"> الإسم الثلاثي:</div>
+				<div class="options">
+					<input type="text" id="name" placeholder="أدخل اسمك" />
+					<a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> الجنس:</div>
+				<div class="options">
+					<button onclick="nextQuestion()">ذكر</button>
+					<button onclick="nextQuestion()">أنثى</button>
+				</div>
+			</div>
+
+			<!-- Multiple Choice Question -->
+			<div class="question-container">
+				<div class="question">ما هي هواياتك المفضلة؟</div>
+				<div class="options">
+					<label class="custom-checkbox"><input type="checkbox" name="hobbies" value="reading"><span></span>
+						القراءة</label>
+					<label class="custom-checkbox"><input type="checkbox" name="hobbies" value="traveling"><span></span>
+						السفر</label>
+					<label class="custom-checkbox"><input type="checkbox" name="hobbies" value="cooking"><span></span>
+						الطبخ</label>
+					<label class="custom-checkbox"><input type="checkbox" name="hobbies" value="sports"><span></span>
+						الرياضة</label>
+
+					<a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+
+			<!-- File Upload Question -->
+			<div class="question-container">
+				<div class="question">الرجاء تحميل صورتك الشخصية:</div>
+				<div class="options">
+					<div class="row">
+						<div class="file-upload-wrapper">
+							<button class="file-upload-button">اختر ملف</button>
+							<input type="file" id="fileUploader" class="file-upload-input" />
+						</div>
+						<span class="file-upload-text" id="file-upload-text">لم يتم اختيار ملف</span>
+					</div>
+					<a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> الوزن:</div>
+				<div class="options">
+					<input type="text" id="weight" placeholder="أدخل وزنك" />
+					<a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> الطول:</div>
+				<div class="options">
+					<input type="text" id="height" placeholder="أدخل طولك" />
+					<a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> العمر:</div>
+				<div class="options">
+					<input type="text" id="age" placeholder="أدخل عمرك" />
+					<a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+
+			<div class="question-container">
+				<div class="question"> رقم التواصل للواتس أب: لاتنسى الرقم الدولي مثل: +٩٦٥</div>
+				<div class="options">
+					<input type="text" id="phone" placeholder="أدخل رقم التواصل" />
+					<a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> الباقة المطلوبة:</div>
+				<div class="options">
+					<button onclick="nextQuestion()">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
+					<button onclick="nextQuestion()">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
+					<button onclick="nextQuestion()">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
+					<button onclick="nextQuestion()">انا طالب</button>
+					<button onclick="nextQuestion()">انا موظف</button>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> البريد الإلكتروني ويفضل يكون جيميل لسهولة التواصل (@gmail):</div>
+				<div class="options">
+					<input type="email" id="email" placeholder="أدخل بريدك الإلكتروني" />
+					<a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> الأدوات المتوفرة للتمرين: ممكن تسجيل أكثر من أداة</div>
+				<div class="options">
+					<button onclick="nextQuestion()">نادي كامل</button>
+					<button onclick="nextQuestion()">دامبل</button>
+					<button onclick="nextQuestion()">بار</button>
+					<button onclick="nextQuestion()">سيور مقاومة</button>
+					<button onclick="nextQuestion()">معدات منزلية ممكن استخدامها للتمرين</button>
+					<button onclick="nextQuestion()">فقط وزن الجسم</button>
+					<button onclick="nextQuestion()">أخرى</button>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> الهدف الأساسي من الجدول:</div>
+				<div class="options">
+					<button onclick="nextQuestion()">خسارة أكبر كمية ممكنه من الدهون مع الحفاظ على العضل</button>
+					<button onclick="nextQuestion()">زيادة أكبر كمية ممكنه من العضل مقابل أقل كمية من الدهون</button>
+					<button onclick="nextQuestion()">الحفاظ على الوزن وتحسين الصحه والمظهر بشكل عام</button>
+					<button onclick="nextQuestion()">تجهيز بطولات</button>
+					<button onclick="nextQuestion()">أخرى</button>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> عدد أيام التمرين في الاسبوع :</div>
+				<div class="options">
+					<button onclick="nextQuestion()">٢</button>
+					<button onclick="nextQuestion()">٣</button>
+					<button onclick="nextQuestion()">٤</button>
+					<button onclick="nextQuestion()">٥</button>
+					<button onclick="nextQuestion()">٦</button>
+					<button onclick="nextQuestion()">٧</button>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> تمارين المقاومة والمرحلة التدريبية:</div>
+				<div class="options">
+					<button onclick="nextQuestion()">مبتدئ: ( أول مره ألتزم في جدول تدريبي )</button>
+					<button onclick="nextQuestion()">أمارس تمارين المقاومة وأتبع جدول تدريبي لفترة (أقل من ٣
+						شهور)</button>
+					<button onclick="nextQuestion()">أمارس تمارين المقاومة وأتبع جدول تدريبي لفترة (مابين ٣-٦
+						شهور)</button>
+					<button onclick="nextQuestion()">أمارس تمارين المقاومة, ولكن قاطع التمرين من فترة ( يرجى تحديد مدة
+						الفترة)</button>
+					<button onclick="nextQuestion()">أمارس تمارين المقاومة وأتبع جدول تدريبي لفترة (أكثر من ٦
+						شهور)</button>
+					<button onclick="nextQuestion()">أمارس تمارين المقاومة وأتبع جدول تدريبي (لأكثر من سنة)</button>
+					<button onclick="nextQuestion()">أمارس تمارين المقاومة وأتبع جدول تدريبي متواصل (لأكثر من ٣
+						سنوات)</button>
+					<button onclick="nextQuestion()">أخرى</button>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> الوظيفة - يفضل ذكر ما اذا كانت مكتبية أو فيها حركه:</div>
+				<div class="options">
+					<input type="text" id="job" placeholder="أدخل وظيفتك" />
+					<a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل في حد معين لمدة التمرين؟ ساعة مثلا؟</div>
+				<div class="options">
+					<input type="text" id="exercise-limit" placeholder="أدخل المدة" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل تعاني من أي مشاكل صحية؟ اذكرها</div>
+				<div class="options">
+					<input type="text" id="health-issues" placeholder="أدخل المشاكل الصحية" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل تتبع الخطوات؟ تقريبا كم عدد الخطوات يوميا؟</div>
+				<div class="options">
+					<input type="text" id="steps" placeholder="أدخل عدد الخطوات" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل توجد أي اصابات؟ اذكرها</div>
+				<div class="options">
+					<input type="text" id="injuries" placeholder="أدخل الإصابات" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل تم اجراء أي عمليات من قبل؟ اذكرها</div>
+				<div class="options">
+					<input type="text" id="surgeries" placeholder="أدخل العمليات" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> بالنسبة للتغذية ماهو وضعك الحالي:</div>
+				<div class="options">
+					<button onclick="nextQuestion()">أتبع نظام السعرات الحراريه</button>
+					<button onclick="nextQuestion()">أتبع نظام الماكروز (البروتين، الكاربوهيدرات، والدهون)</button>
+					<button onclick="nextQuestion()">أكل صحي، ولكن من غير اتباع الماكروز أو السعرات الحراريه</button>
+					<button onclick="nextQuestion()">أكل صحي قليل والأغلب غير صحي</button>
+					<button onclick="nextQuestion()">أكل أي شي متوفر</button>
+					<button onclick="nextQuestion()">أخرى</button>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل تأخذ أي مكملات غذائية؟ اذكرها</div>
+				<div class="options">
+					<input type="text" id="supplements" placeholder="أدخل المكملات الغذائية" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> ماهي تقسيمة جدول تمرينك الحالي ان كنت تتمرن؟ مثال دفع ثم سحب ثم رجلين أو صدر وباي
+					وهكذا</div>
+				<div class="options">
+					<input type="text" id="workout-split" placeholder="أدخل تقسيمة جدول تمرينك" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question">تابع السؤال السابق: كم جولة تلعب لكل عضلة بالاسبوع؟</div>
+				<div class="options">
+					<input type="text" id="sets-per-muscle" placeholder="أدخل عدد الجولات لكل عضلة" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل هناك تمارين محببه لك أو تمارين ماتفضل انها تكون الجدول؟ اذكرها</div>
+				<div class="options">
+					<input type="text" id="favorite-exercises" placeholder="أدخل التمارين" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل هناك عضلات محدده حاب تركز عليها أكثر؟ اذكرها</div>
+				<div class="options">
+					<input type="text" id="focus-muscles" placeholder="أدخل العضلات" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل تأخذ أي محسنات أداء (هرمونات) ؟ اذكر أسماء المواد والفترة</div>
+				<div class="options">
+					<input type="text" id="performance-enhancers" placeholder="أدخل محسنات الأداء" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> متى عملت آخر فحص دم؟ ما هي النتائج؟</div>
+				<div class="options">
+					<input type="text" id="blood-test" placeholder="أدخل تفاصيل الفحص" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> كم وجبة حاب تأكل باليوم؟</div>
+				<div class="options">
+					<input type="text" id="meals-per-day" placeholder="أدخل عدد الوجبات" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل هناك أيام تفضل فيها زيادة أكلك مثل نهاية الاسبوع مقارنة في أيام اخرى؟ اذكر هذه
+					الأيام</div>
+				<div class="options">
+					<input type="text" id="high-calorie-days" placeholder="أدخل الأيام" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل تفضل معظم كمية أكلك في وقت معين مثل الصباح أو المساء ولا ماتفرق معاك؟</div>
+				<div class="options">
+					<input type="text" id="meal-timing" placeholder="أدخل وقت الأكل المفضل" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question"> هل عندك سكر بالعائلة أو أمراض قلب أو مشاكل بالانجاب؟</div>
+				<div class="options">
+					<input type="text" id="family-health-history" placeholder="أدخل المشاكل الصحية بالعائلة" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question">هل انت مدخن أم غير مدخن؟</div>
+				<div class="options">
+					<button onclick="nextQuestion()">مدخن</button>
+					<button onclick="nextQuestion()">غير مدخن</button>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question">لماذا اخترتني كمدرب وكيف عرفتني؟</div>
+				<div class="options">
+					<input type="text" id="trainer-choice" placeholder="أدخل السبب" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question">أي ملاحظه حاب تضيفها قبل ماتبدأ بالرحلة للتطور والوصول لهدفك؟</div>
+				<div class="options">
+					<input type="text" id="additional-notes" placeholder="أدخل ملاحظاتك" />
+					<a class="btn" onclick="nextQuestion()">التالي</a>
+				</div>
+			</div>
+			<div class="question-container">
+				<div class="question">لقد قرأت جميع الشروط والأحكام وأتعهد بالالتزام بها.</div>
+				<div class="options">
+					<button onclick="nextQuestion()">نعم</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const questions = document.querySelectorAll('.question-container');
+		const progressBar = document.getElementById('progress-bar');
+		let currentQuestionIndex = 0;
+
+		function nextQuestion() {
+			if (currentQuestionIndex < questions.length - 1) {
+				questions[currentQuestionIndex].classList.remove('active');
+				currentQuestionIndex++;
+				questions[currentQuestionIndex].classList.add('active');
+				updateProgressBar();
+			}
+		}
+
+		function previousQuestion() {
+			if (currentQuestionIndex > 0) {
+				questions[currentQuestionIndex].classList.remove('active');
+				currentQuestionIndex--;
+				questions[currentQuestionIndex].classList.add('active');
+				updateProgressBar();
+			}
+		}
+
+		function updateProgressBar() {
+			const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+			progressBar.style.width = progress + '%';
+		}
+
+		// JavaScript to update the file name display
+		const fileUploader = document.getElementById('fileUploader');
+		const fileUploadText = document.getElementById('file-upload-text');
+
+		fileUploader.addEventListener('change', function () {
+			if (fileUploader.files.length > 0) {
+				fileUploadText.textContent = fileUploader.files[0].name;
+			} else {
+				fileUploadText.textContent = 'لم يتم اختيار ملف';
+			}
+		});
+	</script>
+
+</body>
+
+</html>
