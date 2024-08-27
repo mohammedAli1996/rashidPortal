@@ -1,46 +1,5 @@
 /* Dashboard */
 
-
-label,
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-a,
-th,
-td {
-    color: rgb(255, 255, 255) !important;
-}
-
-textarea {
-    color: lightgray !important;
-}
-
-
-textarea:-moz-placeholder,
-/* Firefox 18- */
-textarea::-moz-placeholder,
-/* Firefox 19+ */
-textarea:-ms-input-placeholder,
-/* IE 10+ */
-textarea::-webkit-input-placeholder,
-/* Webkit based */
-textarea::placeholder {
-    /* Modern browsers */
-    color: lightgray !important;
-}
-
-textarea::placeholder {
-    color: lightgray !important;
-
-}
-
-.form-control {
-    color: lightgray !important;
-}
-
 :root {
     --main-color: #7a6fbe;
 
@@ -384,3 +343,43 @@ tr:first-child>td>.fc-day-grid-event {
 .card-title {
     margin-bottom: 15px;
 }
+
+
+.logo-img {
+    width: 30%;
+}
+
+@media (max-width: 575px) {
+    .logo-img {
+        width: 50%;
+    }
+
+}
+
+
+.logo-lg img{
+    width: 45%;
+}
+
+.pc-hidden{
+    display: none;
+}
+
+@media (max-width: 990px) {
+    .logo-sm img{
+        width: 30%;
+    }
+
+    .pc-hidden{
+        display: block;
+    }
+
+}
+
+
+@media (max-width: 990px) {
+    .logo span.logo-sm {
+        display: inline-block !important;
+    }
+}
+

@@ -45,7 +45,9 @@
                                 </span>
                             </a>
                         </div>
-
+                        <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect pc-hidden" id="vertical-menu-btn">
+                            <i class="ri-menu-2-line align-middle"></i>
+                        </button>
                     </div>
 
                     <div class="d-flex">
@@ -276,7 +278,27 @@
     </div>
 
     <div class="rightbar-overlay"></div>
+    
+    <div id="logoutModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0" id="myModalLabel">Logout</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label">Are You Sure to Logout?</label>
 
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary waves-effect waves-light">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <script src="../../assets/libs/jquery/jquery.min.js"></script>
     <script src="../../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/libs/metismenu/metisMenu.min.js"></script>

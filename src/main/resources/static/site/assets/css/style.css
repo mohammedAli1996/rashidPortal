@@ -3077,6 +3077,11 @@ blockquote:before {
   margin-top: 0;
 }
 
+.second-card::before{
+  opacity: 1;
+  margin-top: 0;
+}
+
 .club-card-item .price-cover {
   display: flex;
   justify-content: center;
@@ -3096,6 +3101,19 @@ blockquote:before {
   height: 4px;
   background-color: var(--primary-color);
 }
+
+.red-line {
+  content: '';
+  position: absolute;
+  /* bottom: 0; */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75px;
+  height: 4px;
+  background-color: var(--primary-color);
+  margin-top: 10px;
+}
+
 
 .club-card-item .price-cover .price {
   font-size: 40px;
@@ -7196,4 +7214,92 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+/* .ribbon {
+  position: absolute;
+  top: 10px;
+  left: -30px;
+  background-color: #FF5733;
+  color: white;
+  padding: 5px 35px;
+  transform: rotate(-40deg);
+  font-size: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+} */
+
+
+/* 
+.ribbon {
+  position: absolute;
+  top: 10px;
+  left: -32px;
+  background-color: #FF5733;
+  color: white;
+  padding: 5px 30px;
+  transform: rotate(-40deg);
+  font-size: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.ribbon:before,
+.ribbon:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  border: 5px solid transparent;
+  z-index: -1;
+}
+
+.ribbon:before {
+  left: 0;
+  border-left-color: #FF5733;
+}
+
+.ribbon:after {
+  right: 0;
+  border-right-color: #FF5733;
+} */
+
+
+ .ribbon{
+  width: 150px;
+  height: 150px;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  overflow: hidden;
+}
+ .ribbon::before,
+ .ribbon::after{
+  position: absolute;
+  content: "";
+  z-index: -1;
+  display: block;
+  border: 7px solid #dc3737;
+  border-top-color: transparent;
+  border-left-color: transparent;
+}
+ .ribbon::before{
+  top: 0px;
+  right: 13.5px;
+}
+.ribbon::after{
+  bottom: 13px;
+  left: 0px;
+}
+ .ribbon span{
+  position: absolute;
+  top: 30px;
+  right: 0;
+  transform: rotate(-45deg);
+  width: 200px;
+  background: #dc3737;
+  padding: 10px 0;
+  color: #fff;
+  text-align: center;
+  font-size: 17px;
+  text-transform: uppercase;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.12);
 }
