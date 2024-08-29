@@ -21,7 +21,7 @@ public class ResponsesController {
 	private ResponseService responseService ; 
 	
     @PostMapping
-    public ResponseEntity<FormResponse> createFormPackage(@RequestBody FormResponse response) {
+    public ResponseEntity<FormResponse> submitResponse(@RequestBody FormResponse response) {
     	try {
     		return new ResponseEntity<>(responseService.submitResponse(response), HttpStatus.CREATED);	
     	}catch(Exception ex ) {

@@ -36,14 +36,26 @@ function getFormData() {
                                         </div>`;
                 response.questions.forEach(element => {
                     if (itr === response.questions.length - 1) {
-                        _("qstns").innerHTML += `<div class="question-container">
-                                                    <div class="question"> الباقة المطلوبة:</div>
-                                                    <div class="options">
-                                                        <button onclick="choosePkg('1','VIP')">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
-                                                        <button onclick="choosePkg('2','Normal')">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
-                                                        <button onclick="choosePkg('3','Hermons')">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
-                                                    </div>
-                                                </div>`
+                        if (student) {
+                            _("qstns").innerHTML += `<div class="question-container">
+                                                        <div class="question"> الباقة المطلوبة:</div>
+                                                        <div class="options">
+                                                            <button onclick="choosePkg('1','VIP')">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
+                                                            <button onclick="choosePkg('2','Normal')">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
+                                                            <button onclick="choosePkg('3','Hermons')">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
+                                                        </div>
+                                                    </div>`
+                        } else {
+                            _("qstns").innerHTML += `<div class="question-container">
+                                                        <div class="question"> الباقة المطلوبة:</div>
+                                                        <div class="options">
+                                                            <button onclick="choosePkg('1','VIP')">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
+                                                            <button onclick="choosePkg('2','Normal')">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
+                                                            <button onclick="choosePkg('3','Hermons')">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
+                                                        </div>
+                                                    </div>`
+                        }
+
                     }
                     var activeAddon = "";
                     var cnt = "";
@@ -261,16 +273,10 @@ function whenFilesSelected(fileTextElementId, fileInputId, questionId, nextBtnId
 
 
 function submitResponse() {
-    console.log("answersMap");
-    console.log(answersMap);
-    console.log("multiChoiceMap");
-    console.log(multiChoiceMap);
-    console.log("filesMap");
-    console.log(filesMap);
-
+    _("submitBtn").disabled = true;
+    _("sucMsg").style.display = "none";
+    _("errMsg").style.display = "none";
     var responses = [];
-
-
     if (student) {
         var answer = {
             questionId: "",
@@ -288,8 +294,6 @@ function submitResponse() {
         }
         responses.push(answer);
     }
-
-
 
     subscriptionFormQuestionsOrigin.forEach(question => {
         if (question.type === "TEXT" || question.type === "RADIO") {
@@ -327,11 +331,23 @@ function submitResponse() {
         responses: responses
     };
 
-    console.log(formData);
 
-    //Collect response 
-    //send the response to the backend 
-    //redirect to getPaymentLink(); 
+    $.ajax({
+        url: '/api/form-responses',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify(formData),
+        success: function (response) {
+            _("sucMsg").style.display = "block";
+            setTimeout(function () {
+                window.location.href = getPaymentLink();
+            }, 2000);
+        },
+        error: function (xhr, status, error) {
+            _("errMsg").style.display = "block";
+            _("submitBtn").disabled = false;
+        }
+    });
 
 }
 
