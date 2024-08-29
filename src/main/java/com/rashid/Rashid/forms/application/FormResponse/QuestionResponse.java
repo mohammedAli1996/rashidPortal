@@ -1,5 +1,7 @@
 package com.rashid.Rashid.forms.application.FormResponse;
 
+import java.util.List;
+
 import com.rashid.Rashid.forms.application.subscriptionForm.QuestionType;
 
 import lombok.Getter;
@@ -21,6 +23,8 @@ public class QuestionResponse {
 	private QuestionType questionType ; 
 	
 	private String answers ; 
+	
+	private List<String> answersList ; 
 
 	
 }

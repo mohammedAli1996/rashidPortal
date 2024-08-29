@@ -3,6 +3,8 @@ const urlObj = new URL(url);
 const formId = urlObj.searchParams.get('formId');
 
 var student = false;
+var selectedPackage = '1', selectedPackageName = 'VIP';
+var packageAmount = 0;
 
 $(document).ready(function () {
     getFormData();
@@ -13,23 +15,36 @@ var questions;
 var progressBar;
 let currentQuestionIndex = 0;
 
+var subscriptionFormQuestionsOrigin;
+
 function getFormData() {
     $.ajax({
         url: '/api/subscription-form/' + formId,
         type: 'GET',
         contentType: 'application/json',
         success: function (response) {
+            subscriptionFormQuestionsOrigin = response.questions;
             var itr = 0;
             _("qstns").innerHTML = "";
             if (response.questions != null) {
                 _("qstns").innerHTML += `<div class="question-container active">
-                <div class="question">هل انت طالب ؟ ( خصم 20% للطلاب ) :</div>
-                <div class="options">
-                    <button onclick="callStnt()">أنا طالب</button>
-                    <button onclick="nextQuestion()">أنا موظف</button>
-                </div>
-            </div>`;
+                                            <div class="question">هل انت طالب ؟ ( خصم 20% للطلاب ) :</div>
+                                            <div class="options">
+                                                <button onclick="callStnt()">أنا طالب</button>
+                                                <button onclick="nextQuestion()">أنا موظف</button>
+                                            </div>
+                                        </div>`;
                 response.questions.forEach(element => {
+                    if (itr === response.questions.length - 1) {
+                        _("qstns").innerHTML += `<div class="question-container">
+                                                    <div class="question"> الباقة المطلوبة:</div>
+                                                    <div class="options">
+                                                        <button onclick="choosePkg('1','VIP')">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
+                                                        <button onclick="choosePkg('2','Normal')">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
+                                                        <button onclick="choosePkg('3','Hermons')">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
+                                                    </div>
+                                                </div>`
+                    }
                     var activeAddon = "";
                     var cnt = "";
                     if (element.type === "TEXT") {
@@ -57,7 +72,7 @@ function getFormData() {
                     } else if (element.type === "MULTI") {
                         var optionsTxt = ``;
                         element.options.forEach(qOption => {
-                            optionsTxt += `<label  class="custom-checkbox"><input onclick="multiChoiceCheck('` + element.id + `','` + qOption + `')" type="checkbox" name="hobbies" value="` + qOption + `"><span></span>
+                            optionsTxt += `<label  class="custom-checkbox"><input onclick="multiChoiceCheck('` + element.id + `','` + qOption + `','nxtBtn` + element.id + `')" type="checkbox" name="hobbies" value="` + qOption + `"><span></span>
                                         `+ qOption + `</label>`;
                         });
                         cnt = `<div class="question-container ` + activeAddon + `">
@@ -66,7 +81,7 @@ function getFormData() {
                                     `+ optionsTxt + `
                                     <a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
 
-                                    <a class="btn" onclick="nextQuestion()">التالي</a>
+                                    <a class="btn" style="display:none;" id="nxtBtn`+ element.id + `" onclick="nextQuestion()">التالي</a>
                                 </div>
                             </div>`;
                     } else if (element.type === "FILE") {
@@ -76,29 +91,23 @@ function getFormData() {
                                         <div class="row">
                                             <div class="file-upload-wrapper">
                                                 <button class="file-upload-button">اختر ملف</button>
-                                                <input type="file" oninput="whenFilesSelected('fileUploaderText`+ element.id + `' , 'fileUploader` + element.id + `' , '` + element.id + `')" id="fileUploader` + element.id + `" class="file-upload-input" accept="image/*, .pdf, .txt" multiple/>
+                                                <input type="file" oninput="whenFilesSelected('fileUploaderText`+ element.id + `' , 'fileUploader` + element.id + `' , '` + element.id + `','nxtBtn` + element.id + `','loaderId` + element.id + `')" id="fileUploader` + element.id + `" class="file-upload-input" accept="image/*, .pdf, .txt" multiple/>
                                             </div>
                                             <span class="file-upload-text" id="fileUploaderText`+ element.id + `">لم يتم اختيار ملف</span>
                                         </div>
                                         <a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
-                                        <a class="btn" onclick="nextQuestion()">التالي</a>
+                                        <div class="loader" style="display:none;" id="loaderId`+ element.id + `"></div>
+                                        <a class="btn" style="display:none;" id="nxtBtn`+ element.id + `" onclick="nextQuestion()">التالي</a>
                                     </div>
                                 </div>`;
                     }
                     _("qstns").innerHTML += cnt;
-
                     itr++;
                 });
-
-
                 questions = document.querySelectorAll('.question-container');
                 progressBar = document.getElementById('progress-bar');
                 currentQuestionIndex = 0;
-
-
-
             }
-            console.log(response);
         },
         error: function (error) {
             showAlert("Error!", "Failed to add question!", "error");
@@ -113,10 +122,11 @@ function _(id) {
 
 
 var answersMap = new Map();
+var multiChoiceMap = new Map();
+var filesMap = new Map();
 
 function addAnswerRadio(questionId, answer) {
     answersMap.set(questionId, answer);
-    console.log(answersMap);
     nextQuestion();
 }
 
@@ -131,15 +141,13 @@ function addAnswerText(questionId, answerInputId, nextButtonId) {
 }
 
 
-var multiChoiceMap = new Map();
-
-function multiChoiceCheck(questionId, value) {
+function multiChoiceCheck(questionId, value, nextBtnId) {
     if (multiChoiceMap.has(questionId)) {
         var currElementsArr = multiChoiceMap.get(questionId);
         if (currElementsArr.includes(value)) {
 
             if (currElementsArr.length === 1) {
-                currElementsArr = [] ; 
+                currElementsArr = [];
             } else {
                 var indexOfElement = currElementsArr.indexOf(value);
                 currElementsArr.splice(indexOfElement, indexOfElement);
@@ -147,18 +155,19 @@ function multiChoiceCheck(questionId, value) {
         } else {
             currElementsArr.push(value);
         }
+
+        if (currElementsArr.length === 0) {
+            _(nextBtnId).style.display = "none";
+        } else {
+            _(nextBtnId).style.display = "inline-block";
+        }
         multiChoiceMap.set(questionId, currElementsArr);
     } else {
         var elmArray = [];
         elmArray.push(value);
         multiChoiceMap.set(questionId, elmArray);
+        _(nextBtnId).style.display = "inline-block";
     }
-    answersMap.set(questionId, multiChoiceMap);
-
-    console.log("multiChoiceMap:");
-    console.log(multiChoiceMap);
-    console.log("answersMap");
-    console.log(answersMap);
 }
 
 
@@ -167,12 +176,44 @@ function callStnt() {
     nextQuestion();
 }
 
+function choosePkg(packageIndex, packageName) {
+    selectedPackage = packageIndex;
+    selectedPackageName = packageName;
+    nextQuestion();
+}
+
+function getPaymentLink() {
+
+    if (!student) {
+        if (selectedPackage === '1') {
+            packageAmount = 180;
+            return "https://portal.myfatoorah.com/KWT/la/05064177365884058";
+        } else if (selectedPackage === '2') {
+            packageAmount = 150;
+            return "https://portal.myfatoorah.com/KWT/la/05064177365883958";
+        } else {
+            packageAmount = 210;
+            return "https://portal.myfatoorah.com/KWT/la/05064177365884358";
+        }
+    } else {
+        if (selectedPackage === '1') {
+            packageAmount = 144;
+            return "https://portal.myfatoorah.com/KWT/la/05064177365884558";
+        } else if (selectedPackage === '2') {
+            packageAmount = 120;
+            return "https://portal.myfatoorah.com/KWT/la/05064177370487458";
+        } else {
+            packageAmount = 168;
+            return "https://portal.myfatoorah.com/KWT/la/05064177365884758";
+        }
+    }
+
+}
 
 
-var filesMap = new Map();
 
-
-function uploadFiles(inputId, key) {
+function uploadFiles(inputId, key, loaderId, nextBtnId) {
+    _(loaderId).style.display = "inline-block";
     const inputElement = document.getElementById(inputId);
     const files = inputElement.files;
     const responseArray = [];
@@ -190,31 +231,107 @@ function uploadFiles(inputId, key) {
     })
         .then(response => {
             if (!response.ok) {
+                _(loaderId).style.display = "none";
                 throw new Error(`Failed to upload files: ${response.statusText}`);
             }
-            //hide loader 
+            _(loaderId).style.display = "none";
             return response.json();
         })
         .then(responseData => {
             responseArray.push(...responseData);
             filesMap.set(key, responseArray);
-            //hide loader 
+            _(loaderId).style.display = "none";
+            _(nextBtnId).style.display = "inline-block";
+
         })
         .catch(error => {
+            _(loaderId).style.display = "none";
             console.error(`Error uploading files: ${error}`);
-            //hide loader 
         });
 }
 
 
 
 
-
-function whenFilesSelected(fileTextElementId, fileInputId, questionId) {
+function whenFilesSelected(fileTextElementId, fileInputId, questionId, nextBtnId, loaderId) {
     _(fileTextElementId).innerHTML = _(fileInputId).files.length + "ملفات تم اختيارها";
+    uploadFiles(fileInputId, questionId, loaderId, nextBtnId);
+}
 
-    uploadFiles(fileInputId, questionId);
 
+
+function submitResponse() {
+    console.log("answersMap");
+    console.log(answersMap);
+    console.log("multiChoiceMap");
+    console.log(multiChoiceMap);
+    console.log("filesMap");
+    console.log(filesMap);
+
+    var responses = [];
+
+
+    if (student) {
+        var answer = {
+            questionId: "",
+            question: "هل انت طالب ؟",
+            questionType: "TEXT",
+            answers: "أنا طالب"
+        }
+        responses.push(answer);
+    } else {
+        var answer = {
+            questionId: "",
+            question: "هل انت طالب ؟",
+            questionType: "TEXT",
+            answers: "أنا موظف"
+        }
+        responses.push(answer);
+    }
+
+
+
+    subscriptionFormQuestionsOrigin.forEach(question => {
+        if (question.type === "TEXT" || question.type === "RADIO") {
+            var answer = {
+                questionId: question.id,
+                question: question.question,
+                questionType: question.type,
+                answers: answersMap.get(question.id)
+            }
+            responses.push(answer);
+        }
+        else if (question.type === "MULTI") {
+            var answer = {
+                questionId: question.id,
+                question: question.question,
+                questionType: question.type,
+                answersList: multiChoiceMap.get(question.id)
+            }
+            responses.push(answer);
+        }
+        else if (question.type === "FILE") {
+            var answer = {
+                questionId: question.id,
+                question: question.question,
+                questionType: question.type,
+                answersList: filesMap.get(question.id)
+            }
+            responses.push(answer);
+        }
+    });
+
+    var formData = {
+        packageName: selectedPackageName,
+        paymentAmount: packageAmount,
+        responses: responses
+    };
+
+    console.log(formData);
+
+    //Collect response 
+    //send the response to the backend 
+    //redirect to getPaymentLink(); 
 
 }
 

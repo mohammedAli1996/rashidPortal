@@ -8,10 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rashid.Rashid.forms.application.ServiceException;
-import com.rashid.Rashid.forms.application.formPackages.FormPackage;
-import com.rashid.Rashid.forms.application.formPackages.FormsService;
-import com.rashid.Rashid.forms.application.subscriptionForm.SubscriptionForm;
-import com.rashid.Rashid.forms.application.subscriptionForm.SubscriptionFormService;
 
 @Service
 public class ResponseService {
@@ -19,21 +15,10 @@ public class ResponseService {
 	@Autowired
 	private ResponseRepository responseRepository ; 
 
-	@Autowired
-	private SubscriptionFormService subscriptionFormService ;
-	
-    @Autowired
-    private FormsService formsService;    
     
     public FormResponse submitResponse(FormResponse response ) {
-    	formsService.getFormPackageById(response.getFormPackageId());
-    	FormPackage formPackage =  formsService.getFormPackageById(response.getFormPackageId()) ;
-    	SubscriptionForm subscriptionForm = subscriptionFormService.getSubFormById(response.getSubscriptionFormId());
     	
     	response.setSubmittedAt(new Date())
-    			.setFormPackage(formPackage)
-    			.setSubscriptionForm(subscriptionForm)
-    			.setPaymentAmount(formPackage.getPackagePrice())
     			.setDeleted(false);
     	
     	// Add payment info 

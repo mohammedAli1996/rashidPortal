@@ -9,13 +9,35 @@
 	<link rel="stylesheet" href="../../site/assets/css/bootstrap-grid.css">
 	<link rel="stylesheet" href="../../site/assets/css/font-awesome.min.css">
 	<link rel="stylesheet" href="../../site/assets/css/style.css">
+
+
+
+	<style>
+		.loader {
+			width: 50px;
+			aspect-ratio: 1;
+			border-radius: 50%;
+			background:
+				radial-gradient(farthest-side, #f03355 95%, #0000) 50% 1px/12px 12px no-repeat,
+				radial-gradient(farthest-side, #0000 calc(100% - 14px), #ccc 0);
+			animation: l9 2s infinite linear;
+		}
+
+		@keyframes l9 {
+			to {
+				transform: rotate(1turn)
+			}
+		}
+	</style>
+
+
 </head>
 
 <body>
 
 	<header class="header">
 
-		<div class="top-panel" >
+		<div class="top-panel">
 			<div class="container">
 				<div class="header-right">
 					<img class="logo" src="../../site/assets/img/logo.png" alt="">
@@ -47,6 +69,8 @@
 			<span id="progress-bar"></span>
 		</div>
 
+
+
 		<div class="content">
 			<span id="qstns">
 
@@ -54,14 +78,14 @@
 			<div class="question-container">
 				<div class="question">لقد قرأت جميع الشروط والأحكام وأتعهد بالالتزام بها.</div>
 				<div class="options">
-					<button onclick="nextQuestion()">نعم</button>
+					<button onclick="submitResponse()">نعم</button>
 				</div>
 			</div>
 		</div>
 	</div>
 
-<script src="../../assets/libs/jquery/jquery.min.js"></script>
-<script src="../../site/assets/js/subscribe.js"></script>
+	<script src="../../assets/libs/jquery/jquery.min.js"></script>
+	<script src="../../site/assets/js/subscribe.js"></script>
 
 </body>
 
