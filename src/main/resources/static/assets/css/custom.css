@@ -1,5 +1,7 @@
 /* Dashboard */
-
+body{
+    direction: rtl;
+}
 :root {
     --main-color: #7a6fbe;
 
@@ -383,3 +385,7 @@ tr:first-child>td>.fc-day-grid-event {
     }
 }
 
+.translate-text{
+    font-size: 14px;
+    font-style: normal;
+}

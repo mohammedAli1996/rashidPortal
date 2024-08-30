@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="shortcut icon" href="../../assets/images/favicon.png">
-    <link href="../../assets/css/bootstrap-dark.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/bootstrap-dark-rtl.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/icons.min.css" rel="stylesheet" type="text/css" />
-    <link href="../../assets/css/app-dark.min.css" id="app-style" rel="stylesheet" type="text/css" />
+    <link href="../../assets/css/app-dark-rtl.min.css" id="app-style" rel="stylesheet" type="text/css" />
     <link href="../../assets/css/custom.css" rel="stylesheet" type="text/css" />
     <link href="../../assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
 
@@ -45,12 +45,22 @@
                                 </span>
                             </a>
                         </div>
-                        <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect pc-hidden" id="vertical-menu-btn">
+                        <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect pc-hidden"
+                            id="vertical-menu-btn">
                             <i class="ri-menu-2-line align-middle"></i>
                         </button>
                     </div>
 
                     <div class="d-flex">
+                        <!-- <div class="align-self-center">
+                            <button id="lang-toggle-btn" class="btn btn-icon noti-icon">
+                                <i class="mdi mdi-web">
+                                </i>
+                                <span id="translateText" class="translate-text">عربي</span>
+
+                            </button>
+                        </div> -->
+
                         <div class="align-self-center">
                             <button id="theme-toggle-btn" class="btn btn-icon noti-icon">
                                 <i id="theme-icon" class="ri-sun-line"></i>
@@ -74,8 +84,9 @@
 
                     <div id="sidebar-menu">
                         <ul class="metismenu list-unstyled" id="side-menu">
-                            <li><a href="/adminstration/packageType">Package </a>
-                            <li><a href="/adminstration/subscriptionForms">Subscription </a>
+                            <!-- <li><a href="/adminstration/packageType">Package </a> -->
+                            <li><a href="/adminstration/subscriptionForms">اسئلة الاشتراكات </a>
+                            <li><a href="/adminstration/responsesAll">الردود </a>
 
                         </ul>
                     </div>
@@ -96,38 +107,38 @@
                                 <div class="card-body">
                                     <div class="row justify-content-between">
                                         <div class="col-auto">
-                                            <h4 class="card-title">View Subscription Form Details</h4>
+                                            <h4 class="card-title">عرض تفاصيل الاشتراك</h4>
 
                                         </div>
                                         <div class="col-auto">
-                                            <a class="btn btn-primary" onclick="showModal()" target="_blank">Add new Question </a>
+                                            <a class="btn btn-primary" onclick="showModal()" target="_blank">إضافة سؤال جديد </a>
 
                                         </div>
                                     </div>
                                     <form id="packageForm">
                                         <div class="mb-3">
-                                            <label for="formtitle" class="form-label">Form Title</label>
+                                            <label for="formtitle" class="form-label">العنوان</label>
                                             <input type="text" class="form-control" id="formtitle"
-                                                placeholder="Enter Form Title" disabled>
+                                                placeholder="" disabled>
                                         </div>
                                         <div class="mb-3">
-                                            <label for="formDescription" class="form-label">Form Description</label>
+                                            <label for="formDescription" class="form-label">التوصيف</label>
                                             <textarea class="form-control" id="formDescription" rows="3"
-                                                placeholder="Enter Form description" disabled></textarea>
+                                                placeholder="" disabled></textarea>
                                         </div>
                                     </form>
 
                                     <br>
-                                    <h4 class="card-title">All Forms</h4>
+                                    <h4 class="card-title">جميع الأسئلة</h4>
 
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap"
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>Question</th>
-                                                <th>Question Type</th>
-                                                <th>Options</th>
-                                                <th>Actions</th>
+                                                <th>السؤال</th>
+                                                <th>نوع السؤال</th>
+                                                <th>الخيارات</th>
+                                                <th>العمليات</th>
                                             </tr>
                                         </thead>
                                         <tbody id="packagesTableBody">
@@ -147,41 +158,39 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="addQuestionModalLabel">Add New Question</h5>
+                            <h5 class="modal-title" id="addQuestionModalLabel">إضافة سؤال جديد</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                         </div>
                         <div class="modal-body">
                             <form id="addQuestionForm">
                                 <div class="mb-3">
-                                    <label for="questionText" class="form-label">Question</label>
+                                    <label for="questionText" class="form-label">السؤال</label>
                                     <input type="text" class="form-control" id="questionText"
-                                        placeholder="Enter your question">
+                                        placeholder="ادخل السؤال">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="questionType" class="form-label">Question Type</label>
+                                    <label for="questionType" class="form-label">نوع السؤال</label>
                                     <select class="form-control" id="questionType">
-                                        <option value="TEXT">TEXT</option>
-                                        <option value="RADIO">Single Choice</option>
-                                        <option value="MULTI">Multiple Choice</option>
-                                        <option value="FILE">FILE</option>
+                                        <option value="TEXT">نص</option>
+                                        <option value="RADIO">اختيار من نوع واحد</option>
+                                        <option value="MULTI">اختيار من متعدد</option>
+                                        <option value="FILE">ملف</option>
                                     </select>
                                 </div>
                                 <div id="optionsContainer" class="mb-3" style="display:none;">
-                                    <button type="button" class="btn btn-warning mb-3" onclick="addNewOption()">Add
-                                        Option</button> <br>
-                                    <label class="form-label">Options</label>
+                                    <button type="button" class="btn btn-warning mb-3" onclick="addNewOption()">إضافة خيار</button> <br>
+                                    <label class="form-label">الخيارات</label>
                                     <span id="optionsPLH">
-                                        <input type="text" id="opt1" class="form-control mb-2" placeholder="Option 1">
+                                        <input type="text" id="opt1" class="form-control mb-2" placeholder="الخيار 1">
                                     </span>
                                 </div>
 
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" id="saveQuestionButton">Save
-                                Question</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" id="saveQuestionButton">حفظ السؤال</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
                         </div>
                     </div>
                 </div>
@@ -192,39 +201,37 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="edtModalLabel">Edit Question</h5>
+                            <h5 class="modal-title" id="edtModalLabel">تعديل السؤال</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
                         </div>
                         <div class="modal-body">
                             <form id="addQuestionForm">
                                 <div class="mb-3">
-                                    <label for="edtquestionText" class="form-label">Question</label>
+                                    <label for="edtquestionText" class="form-label">السؤال</label>
                                     <input type="text" class="form-control" id="edtquestionText"
-                                        placeholder="Enter your question">
+                                        placeholder="ادخل السؤال">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="edtquestionType" class="form-label">Question Type</label>
+                                    <label for="edtquestionType" class="form-label">نوع السؤال</label>
                                     <select class="form-control" id="edtquestionType" onchange="changeQType()">
-                                        <option value="TEXT">TEXT</option>
-                                        <option value="RADIO">Single Choice</option>
-                                        <option value="MULTI">Multiple Choice</option>
-                                        <option value="FILE">FILE</option>
+                                        <option value="TEXT">نص</option>
+                                        <option value="RADIO">اختيار من نوع واحد</option>
+                                        <option value="MULTI">اختيار من متعدد</option>
+                                        <option value="FILE">ملف</option>
                                     </select>
                                 </div>
                                 <div id="edtoptionsContainer" class="mb-3" style="display:none;">
-                                    <button type="button" class="btn btn-warning mb-3" onclick="addNewEdtOption()">Add
-                                        Option</button> <br>
-                                    <label class="form-label">Options</label>
+                                    <button type="button" class="btn btn-warning mb-3" onclick="addNewEdtOption()">إاضافة خيار</button> <br>
+                                    <label class="form-label">الخيارات</label>
                                     <span id="edtOptionsPLH"></span>
                                 </div>
 
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="updateQuestion()">Update
-                                Question</button>
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="updateQuestion()">تحديث السؤال</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
                         </div>
                     </div>
                 </div>
@@ -278,23 +285,23 @@
     </div>
 
     <div class="rightbar-overlay"></div>
-    
+
     <div id="logoutModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myModalLabel">Logout</h5>
+                    <h5 class="modal-title mt-0" id="myModalLabel">تسجيل خروج</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <label class="form-label">Are You Sure to Logout?</label>
+                    <label class="form-label">هل أنت متأكد من تسجيل الخروج؟</label>
 
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Yes</button>
+                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">إلغاء</button>
+                    <button type="button" class="btn btn-primary waves-effect waves-light">نعم</button>
                 </div>
             </div>
         </div>

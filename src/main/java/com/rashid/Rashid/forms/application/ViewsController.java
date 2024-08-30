@@ -39,6 +39,10 @@ public class ViewsController {
 		return "admin/packages";
 	}
 	
+	@GetMapping("/adminstration/responsesAll")
+	public String responsesAll() {
+		return "admin/responsesAll";
+	}
 	
 	
 	@GetMapping("/adminstration/subscriptionForms")

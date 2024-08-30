@@ -17,10 +17,10 @@ $(document).ready(function () {
         var selectedType = $(this).val();
         if (selectedType === 'RADIO' || selectedType === 'MULTI') {
             optIndex = 1;
-            document.getElementById("optionsContainer").innerHTML = ` <button type="button" class="btn btn-warning mb-3" onclick="addNewOption()">Add Option</button> <br>
-                            <label class="form-label">Options</label>
+            document.getElementById("optionsContainer").innerHTML = ` <button type="button" class="btn btn-warning mb-3" onclick="addNewOption()">إضافة خيار</button> <br>
+                            <label class="form-label">الخيارات</label>
                             <span id="optionsPLH">
-                                <input type="text" id="opt1" class="form-control mb-2" placeholder="Option 1">
+                                <input type="text" id="opt1" class="form-control mb-2" placeholder="الخيار 1">
                             </span>`;
             $('#optionsContainer').show();
         } else {
@@ -58,12 +58,12 @@ $(document).ready(function () {
             data: JSON.stringify(formQuestion),
             success: function (response) {
                 $('#otpModal').modal('hide');
-                showAlert("Success!", "Question added successfully!", "success");
+                showAlert("تم بنجاح!", "تم إضافة السؤال بنجاح!", "success");
 
                 getFormDetails();
             },
             error: function (error) {
-                showAlert("Error!", "Failed to add question!", "error");
+                showAlert("خطأ!", "فشل إضافة السؤال!", "error");
             }
         });
     });
@@ -79,7 +79,7 @@ function addNewOption() {
         valsMap.set("opt" + i, document.getElementById("opt" + i).value);
     }
     optIndex++;
-    document.getElementById("optionsPLH").innerHTML += `<input type="text" id="opt` + optIndex + `" class="form-control mb-2" placeholder="Option ` + optIndex + `">`;
+    document.getElementById("optionsPLH").innerHTML += `<input type="text" id="opt` + optIndex + `" class="form-control mb-2" placeholder="الخيار ` + optIndex + `">`;
     for (var i = 1; i < optIndex; i++) {
         document.getElementById("opt" + i).value = valsMap.get("opt" + i);
     }
@@ -124,8 +124,8 @@ function addQuestionToTable(question) {
         <td>${question.type}</td>
         <td>${optionsAddon}</td>
         <td>
-        <button class="btn btn-secondary" onclick="editQuestion('${question.id}')">Edit</button>
-        <button class="btn btn-danger" onclick="deleteQuestion('${question.id}')">Delete</button>
+        <button class="btn btn-secondary" onclick="editQuestion('${question.id}')">تعديل</button>
+        <button class="btn btn-danger" onclick="deleteQuestion('${question.id}')">حذف</button>
         </td>
     `;
     tableBody.appendChild(row);
@@ -151,10 +151,10 @@ function deleteQuestion(qid) {
 
 
 var edtIndex = 0;
-var currQID ; 
+var currQID;
 
 function editQuestion(qid) {
-    currQID = qid ; 
+    currQID = qid;
     var qstn = questionsMap.get(qid);
     _("edtquestionText").value = qstn.question;
     _("edtquestionType").value = qstn.type;
@@ -180,7 +180,7 @@ function addNewEdtOption() {
         valsMap.set("edtopt" + i, document.getElementById("edtopt" + i).value);
     }
     edtIndex++;
-    document.getElementById("edtOptionsPLH").innerHTML += `<input type="text" id="edtopt` + edtIndex + `" class="form-control mb-2" placeholder="Option ` + edtIndex + `">`;
+    document.getElementById("edtOptionsPLH").innerHTML += `<input type="text" id="edtopt` + edtIndex + `" class="form-control mb-2" placeholder="الخيار ` + edtIndex + `">`;
     for (var i = 1; i < edtIndex; i++) {
         document.getElementById("edtopt" + i).value = valsMap.get("edtopt" + i);
     }
@@ -192,10 +192,10 @@ function changeQType() {
 
     if (selectedType === 'RADIO' || selectedType === 'MULTI') {
         edtIndex = 1;
-        document.getElementById("edtoptionsContainer").innerHTML = ` <button type="button" class="btn btn-warning mb-3" onclick="addNewEdtOption()">Add Option</button> <br>
-                            <label class="form-label">Options</label>
+        document.getElementById("edtoptionsContainer").innerHTML = ` <button type="button" class="btn btn-warning mb-3" onclick="addNewEdtOption()">إضافة خيار</button> <br>
+                            <label class="form-label">الخيارات</label>
                             <span id="edtOptionsPLH">
-                                <input type="text" id="edtopt1" class="form-control mb-2" placeholder="Option 1">
+                                <input type="text" id="edtopt1" class="form-control mb-2" placeholder="الخيار 1">
                             </span>`;
         $('#edtoptionsContainer').show();
     } else {
@@ -219,7 +219,7 @@ function updateQuestion() {
     }
 
     var formQuestion = {
-        id:currQID,
+        id: currQID,
         question: question,
         type: type,
         options: options
@@ -232,11 +232,11 @@ function updateQuestion() {
         data: JSON.stringify(formQuestion),
         success: function (response) {
             $('#edtModal').modal('hide');
-            showAlert("Success!", "Question edited successfully!", "success");
+            showAlert("تم بنجاح!", "تم تعديل السؤال بنجاح!", "success");
             getFormDetails();
         },
         error: function (error) {
-            showAlert("Error!", "Failed to edited question!", "error");
+            showAlert("خطأ!", "فشل تعديل السؤال!", "error");
 
         }
     });

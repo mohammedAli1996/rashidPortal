@@ -55,7 +55,7 @@ body {
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #79859c;
+  color: #FFF;
   background-color: #1d222e;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
@@ -1575,15 +1575,15 @@ progress {
 
 .table {
   --bs-table-bg: transparent;
-  --bs-table-striped-color: #79859c;
+  --bs-table-striped-color: #FFF;
   --bs-table-striped-bg: rgba(133, 144, 165, 0.05);
-  --bs-table-active-color: #79859c;
+  --bs-table-active-color: #FFF;
   --bs-table-active-bg: rgba(0, 0, 0, 0.075);
-  --bs-table-hover-color: #79859c;
+  --bs-table-hover-color: #FFF;
   --bs-table-hover-bg: rgba(133, 144, 165, 0.05);
   width: 100%;
   margin-bottom: 1rem;
-  color: #79859c;
+  color: #FFF;
   vertical-align: top;
   border-color: #2d3448; }
   .table > :not(caption) > * > * {
@@ -1874,7 +1874,7 @@ progress {
   padding: 0.47rem 0;
   margin-bottom: 0;
   line-height: 1.5;
-  color: #79859c;
+  color: #FFF;
   background-color: transparent;
   border: solid transparent;
   border-width: 1px 0; }
@@ -1999,7 +1999,7 @@ textarea.form-control-lg {
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
-  border: 1px solid #79859c;
+  border: 1px solid #FFF;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -2438,7 +2438,7 @@ textarea.form-control-lg {
   display: inline-block;
   font-weight: 400;
   line-height: 1.5;
-  color: #79859c;
+  color: #FFF;
   text-align: center;
   vertical-align: middle;
   cursor: pointer;
@@ -2460,7 +2460,7 @@ textarea.form-control-lg {
       -webkit-transition: none;
       transition: none; } }
   .btn:hover {
-    color: #79859c;
+    color: #FFF;
     text-decoration: none; }
   .btn-check:focus + .btn, .btn:focus {
     outline: 0;
@@ -3011,7 +3011,7 @@ textarea.form-control-lg {
   padding: 0.5rem 0;
   margin: 0;
   font-size: 0.9rem;
-  color: #79859c;
+  color: #FFF;
   text-align: right;
   list-style: none;
   background-color: #252b3b;
@@ -3857,7 +3857,7 @@ textarea.form-control-lg {
   width: 100%;
   padding: 1rem 1.25rem;
   font-size: 0.9rem;
-  color: #79859c;
+  color: #FFF;
   text-align: right;
   background-color: transparent;
   border: 1px solid #2d3448;
@@ -4233,7 +4233,7 @@ textarea.form-control-lg {
     text-decoration: none;
     background-color: #212529; }
   .list-group-item-action:active {
-    color: #79859c;
+    color: #FFF;
     background-color: #252b3b; }
 
 .list-group-item {
@@ -5034,7 +5034,7 @@ textarea.form-control-lg {
 
 .popover-body {
   padding: 1rem 0.75rem;
-  color: #79859c; }
+  color: #FFF; }
 
 .carousel {
   position: relative; }
@@ -6445,7 +6445,7 @@ textarea.form-control-lg {
   color: #fff !important; }
 
 .text-body {
-  color: #79859c !important; }
+  color: #FFF !important; }
 
 .text-muted {
   color: #919bae !important; }
@@ -9179,9 +9179,9 @@ label {
   background-color: #4655ce !important; }
 
 .badge.bg-light {
-  color: #79859c; }
+  color: #FFF; }
   .badge.bg-light[href]:hover, .badge.bg-light[href]:focus {
-    color: #79859c; }
+    color: #FFF; }
 
 .badge-soft-primary {
   color: #5664d2;
@@ -9195,9 +9195,9 @@ label {
   background-color: #8590a5 !important; }
 
 .badge.bg-light {
-  color: #79859c; }
+  color: #FFF; }
   .badge.bg-light[href]:hover, .badge.bg-light[href]:focus {
-    color: #79859c; }
+    color: #FFF; }
 
 .badge-soft-secondary {
   color: #919bae;
@@ -9211,9 +9211,9 @@ label {
   background-color: #19a97f !important; }
 
 .badge.bg-light {
-  color: #79859c; }
+  color: #FFF; }
   .badge.bg-light[href]:hover, .badge.bg-light[href]:focus {
-    color: #79859c; }
+    color: #FFF; }
 
 .badge-soft-success {
   color: #1cbb8c;
@@ -9227,9 +9227,9 @@ label {
   background-color: #3699ff !important; }
 
 .badge.bg-light {
-  color: #79859c; }
+  color: #FFF; }
   .badge.bg-light[href]:hover, .badge.bg-light[href]:focus {
-    color: #79859c; }
+    color: #FFF; }
 
 .badge-soft-info {
   color: #4aa3ff;
@@ -9243,9 +9243,9 @@ label {
   background-color: #fcb218 !important; }
 
 .badge.bg-light {
-  color: #79859c; }
+  color: #FFF; }
   .badge.bg-light[href]:hover, .badge.bg-light[href]:focus {
-    color: #79859c; }
+    color: #FFF; }
 
 .badge-soft-warning {
   color: #fcb92c;
@@ -9259,9 +9259,9 @@ label {
   background-color: #ff294f !important; }
 
 .badge.bg-light {
-  color: #79859c; }
+  color: #FFF; }
   .badge.bg-light[href]:hover, .badge.bg-light[href]:focus {
-    color: #79859c; }
+    color: #FFF; }
 
 .badge-soft-danger {
   color: #ff3d60;
@@ -9275,9 +9275,9 @@ label {
   background-color: #e62c81 !important; }
 
 .badge.bg-light {
-  color: #79859c; }
+  color: #FFF; }
   .badge.bg-light[href]:hover, .badge.bg-light[href]:focus {
-    color: #79859c; }
+    color: #FFF; }
 
 .badge-soft-pink {
   color: #e83e8c;
@@ -9291,9 +9291,9 @@ label {
   background-color: #252b3b !important; }
 
 .badge.bg-light {
-  color: #79859c; }
+  color: #FFF; }
   .badge.bg-light[href]:hover, .badge.bg-light[href]:focus {
-    color: #79859c; }
+    color: #FFF; }
 
 .badge-soft-light {
   color: #2d3448;
@@ -9307,9 +9307,9 @@ label {
   background-color: #e1e7f0 !important; }
 
 .badge.bg-light {
-  color: #79859c; }
+  color: #FFF; }
   .badge.bg-light[href]:hover, .badge.bg-light[href]:focus {
-    color: #79859c; }
+    color: #FFF; }
 
 .badge-soft-dark {
   color: #eff2f7;
@@ -9365,12 +9365,12 @@ button, a {
   color: inherit; }
 
 .card-title {
-  font-size: 15px;
+  font-size: 20px;
   margin: 0 0 7px 0;
   font-weight: 500; }
 
 .card-title-desc {
-  color: #79859c;
+  color: #FFF;
   margin-bottom: 24px; }
 
 .dropdown-menu {

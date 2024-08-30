@@ -2,30 +2,30 @@ window.onload = function() {
     fetchPackages();
 };
 
-document.getElementById('packageForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const formtitle = document.getElementById('formtitle').value;
-    const formDescription = document.getElementById('formDescription').value;
+// document.getElementById('packageForm').addEventListener('submit', function(event) {
+//     event.preventDefault();
+//     const formtitle = document.getElementById('formtitle').value;
+//     const formDescription = document.getElementById('formDescription').value;
 
-    const formPackage = {
-        formtitle: formtitle,
-        formDescription: formDescription
-    };
+//     const formPackage = {
+//         formtitle: formtitle,
+//         formDescription: formDescription
+//     };
 
-    fetch('/api/subscription-form', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formPackage),
-    })
-    .then(response => response.json())
-    .then(data => {
-        addPackageToTable(data);
-        document.getElementById('packageForm').reset();
-    })
-    .catch(error => console.error('Error:', error));
-});
+//     fetch('/api/subscription-form', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//         },
+//         body: JSON.stringify(formPackage),
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         addPackageToTable(data);
+//         document.getElementById('packageForm').reset();
+//     })
+//     .catch(error => console.error('Error:', error));
+// });
 
 function fetchPackages() {
     fetch('/api/subscription-form')
@@ -42,7 +42,7 @@ function addPackageToTable(package) {
     row.innerHTML = `
         <td>${package.formtitle}</td>
         <td>${package.formDescription}</td>
-        <td><button class="btn btn-primary" onclick="viewForm('${package.id}')">View</button></td>
+        <td><button class="btn btn-primary" onclick="viewForm('${package.id}')">عرض</button></td>
     `;
     tableBody.appendChild(row);
 }
