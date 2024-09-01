@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Form</title>
 	<link rel="shortcut icon" href="../../assets/images/favicon.png">
+	<link href="../../assets/css/bootstrap-dark-rtl.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
 
 	<link rel="stylesheet" href="../../site/assets/css/slick.min.css">
 	<link rel="stylesheet" href="../../site/assets/css/bootstrap-grid.css">
@@ -68,15 +69,14 @@
 			<span id="progress-bar"></span>
 		</div>
 
-
-
 		<div class="content">
 			<span id="qstns">
 
 			</span>
 			<div class="question-container">
 				<div class="question">لقد قرأت جميع
-					<a href="" class="terms-sty">الشروط والأحكام</a>
+					<a class="terms-sty" id="theme-toggle-btn" data-bs-toggle="modal"
+						data-bs-target="#termsModal">الشروط والأحكام</a>
 					وأتعهد بالالتزام بها.
 				</div>
 				<div class="options">
@@ -89,8 +89,84 @@
 		</div>
 	</div>
 
+	<div id="termsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title mt-0" id="myModalLabel">الشروط والأحكام</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<!-- <label class="form-label"></label> -->
+					<ol>
+						<li class="terms-txt">١- مدة الإشتراك تبدأ من تسليم الجدول للمشترك، ولا يمكن تأجيل أو إيقاف
+							الإشتراك بعد إرسال
+							الجدول الا في الحالات الطارئة.
+						</li>
+						<li class="terms-txt">
+							٢- يفضل توفير ميزان للأكل لمتابعة كمية الأكل كبداية للحصول على نتائج دقيقة، ومع الوقت ستصل
+							إلى فهم أكثر لجسمك بحيث تستطيع معرفة كمية الأكل المناسبة لك.
+						</li>
+						<li class="terms-txt">
+
+							٣- يتعهد المشترك بعدم نشر أو مشاركة الجدول التدريبي مع أي شخص آخر فهناك حقوق نشر.
+						</li>
+						<li class="terms-txt">
+
+							٤- يتعهد المشترك بأن جميع البيانات في نموذج التسجيل صحيحة وغير مزورة.
+						</li>
+						<li class="terms-txt">
+
+							٥- يتحمل المشترك نتائج عدم إلتزامه بالتعليمات في الجدول، لأن هذا سيؤثر على النتائج.
+						</li>
+						<li class="terms-txt">
+
+							٦- التواصل سيتم بالكامل عبر الواتس أب من خلال المحادثات الكتابية فقط، ولايوجد تواصل عبر
+							المكالمات الهاتفية.
+						</li>
+						<li class="terms-txt">
+
+							٧- ملف الأسئلة الشائعة مهم، فيجب على المشترك قراءته قبل طرح أي سؤال أو استفسار.
+						</li>
+						<li class="terms-txt">
+
+							٨- بالنسبة للرجال: سيتم متابعة التطورات من خلال صور الجسم، أما بالنسبة للنساء فسيتم متابعة
+							التطور من خلال المقاسات فقط من غير صور وممكن ارسال الصور للمدربه المساعده فقط في حال كان
+							هناك أي ملاحظات من المتدربة
+						</li>
+						<li class="terms-txt">
+
+							٩- يتم تسليم الجدول خلال ٣-٧ أيام عمل من الدفع واستلام جميع التفاصيل وبداية كل جدول ستكون مع
+							بداية الاسبوع, ولكن تقسيمة التمرين تعتمد حسب رغبة الشخص وظروف حياته فله الحرية في اختيار عدد
+							أيام التمرين والراحة المناسبة له.
+						</li>
+						<li class="terms-txt">
+
+							١٠- كل فترة يتم تطوير الجداول التدريبية من ناحية جانب التمرين - التغذية - التصميم - ومحسنات
+							الأداء مع تطور العلم, بالتالي يتم مسح الجداول القديمة تلقائيا بعد مرور فترة طويلة من عدم
+							التزام المشترك خاصة ان بيانات الشخص نفسه ستختلف بعد هذه الفترة الطويلة من عدم الالتزام.
+						</li>
+						<li class="terms-txt">
+
+							١١- يحق للمدرب إلغاء اشتراك المتدرب اذا لم يتبع التعليمات أو أساء إليه، ولايوجد استرجاع
+							للمبلغ في حال الإساءة.
+						</li>
+					</ol>
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">إلغاء</button>
+					<button type="button" class="btn btn-primary waves-effect waves-light">موافق</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script src="../../assets/libs/jquery/jquery.min.js"></script>
 	<script src="../../site/assets/js/subscribe.js"></script>
+	<script src="../../assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
