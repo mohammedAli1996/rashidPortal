@@ -1,13 +1,23 @@
-const url = window.location.href;
-const urlObj = new URL(url);
-const formId = urlObj.searchParams.get('formId');
-
 var student = false;
 var selectedPackage = '1', selectedPackageName = 'VIP';
 var packageAmount = 0;
+var formId ; 
 
 $(document).ready(function () {
-    getFormData();
+    $.ajax({
+        url: '/api/subscription-form/mainForm',
+        type: 'GET',
+        contentType: 'application/json',
+        success: function (response) {
+            formId = response.id ; 
+            getFormData();
+        },
+        error: function (error) {
+            showAlert("Error!", "Failed to add question!", "error");
+        }
+    });
+
+    
 })
 
 
@@ -64,7 +74,7 @@ function getFormData() {
                                     <div class="question">`+ element.question + ` :</div>
                                     <div class="options">
                                         <input type="text" id="txtqstn`+ element.id + `" onkeyup="addAnswerText('` + element.id + `','txtqstn` + element.id + `','nxtBtn` + element.id + `')"/>
-                                        <a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+                                        <a class="btn" onclick="previousQuestion()">السابق</a>
                                         <a class="btn" id="nxtBtn`+ element.id + `" style="display:none;" onclick="nextQuestion()">التالي</a>
 
                                     </div>
@@ -91,7 +101,7 @@ function getFormData() {
                                 <div class="question">`+ element.question + ` :</div>
                                 <div class="options">
                                     `+ optionsTxt + `
-                                    <a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+                                    <a class="btn" onclick="previousQuestion()">السابق</a>
 
                                     <a class="btn" style="display:none;" id="nxtBtn`+ element.id + `" onclick="nextQuestion()">التالي</a>
                                 </div>
@@ -107,7 +117,7 @@ function getFormData() {
                                             </div>
                                             <span class="file-upload-text" id="fileUploaderText`+ element.id + `">لم يتم اختيار ملف</span>
                                         </div>
-                                        <a class="btn btn-secondary" onclick="previousQuestion()">السابق</a>
+                                        <a class="btn" onclick="previousQuestion()">السابق</a>
                                         <div class="loader" style="display:none;" id="loaderId`+ element.id + `"></div>
                                         <a class="btn" style="display:none;" id="nxtBtn`+ element.id + `" onclick="nextQuestion()">التالي</a>
                                     </div>

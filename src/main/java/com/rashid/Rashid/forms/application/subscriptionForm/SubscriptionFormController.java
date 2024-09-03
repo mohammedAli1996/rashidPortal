@@ -44,6 +44,11 @@ public class SubscriptionFormController {
     }
 
     
+    @GetMapping("/mainForm")
+    public ResponseEntity<SubscriptionForm> getMainFor() {
+        return new ResponseEntity<>(subscriptionFormService.getAllForms().get(0), HttpStatus.OK);
+    }
+    
     
     @PostMapping("/addQuestion")
     public ResponseEntity<FormQuestion> addQuestionToForm(@RequestBody FormQuestion formQuestion) {

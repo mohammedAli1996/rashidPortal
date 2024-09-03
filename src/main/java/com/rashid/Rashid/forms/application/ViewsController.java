@@ -22,8 +22,7 @@ public class ViewsController {
 	
 	
 	@GetMapping("/subscribe")
-	public String subscribe(@RequestParam(name = "formId") String formId,
-			@RequestParam(name = "pkgId") String pkgId) {
+	public String subscribe() {
 		return "site/subscribe";
 	}
 	
