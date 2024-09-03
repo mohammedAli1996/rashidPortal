@@ -31,6 +31,11 @@ public class ResponseService {
     }
     
  
+    public FormResponse markAsPaid(String id , boolean paid) {
+    	FormResponse response = getResponseById(id);
+    	response.setPaid(paid);
+    	return responseRepository.save(response);
+    }
     
     public FormResponse getResponseById(String id ) {
     	Optional<FormResponse> optional = responseRepository.findById(id);

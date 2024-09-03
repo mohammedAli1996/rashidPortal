@@ -106,19 +106,21 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">الردود</h4>
-
-                                    <table id="datatable" class="table table-bordered dt-responsive nowrap"
+                                    <div id="dtblD"></div>
+                                    <!-- <table id="datatable" class="table table-bordered dt-responsive nowrap"
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
                                             <tr>
-                                                <th>العنوان</th>
-                                                <th>التوصيف</th>
-                                                <th>العمليات</th>
+                                                <th>التاريخ</th>
+                                                <th>الباقة</th>
+                                                <th>عرض </th>
+                                                <th>حذف </th>
                                             </tr>
                                         </thead>
                                         <tbody id="packagesTableBody">
+                                            
                                         </tbody>
-                                    </table>
+                                    </table> -->
 
                                 </div>
                             </div>
@@ -176,24 +178,16 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myModalLabel">Add a group</h5>
+                    <h5 class="modal-title mt-0" id="myModalLabel">عرض معلومات رد</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <label class="form-label">Group Name</label>
-                    <input type="text" class="form-control rounded chat-input ps-3" placeholder="">
-                    <br>
-                    <label class="form-label">Group Servers</label>
-                    <select class="form-control  rounded chat-input select2">
-                        <option>Select</option>
-                        <option value="l1">Location1</option>
-                        <option value="l2">Location2</option>
-                        <option value="l3">Location3</option>
-                    </select>
+                <div class="modal-body" id="modalBdy">
+                    
+
+                    
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary waves-effect waves-light">Ok</button>
+                    <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">إغلاق</button>
                 </div>
             </div>
         </div>

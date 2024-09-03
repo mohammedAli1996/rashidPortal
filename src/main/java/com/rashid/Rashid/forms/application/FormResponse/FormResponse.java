@@ -27,6 +27,8 @@ public class FormResponse {
 	
 	private double paymentAmount ;
 	
+	private boolean paid ;
+	
 	private List<QuestionResponse> responses ;   
 
 	

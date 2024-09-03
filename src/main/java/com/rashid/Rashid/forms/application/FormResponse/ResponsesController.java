@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -29,6 +30,21 @@ public class ResponsesController {
     	}
     }
 
+    
+    
+    
+    
+    
+    @GetMapping("/markAsPaid")
+    public ResponseEntity<FormResponse> markAsPaid(@RequestParam(name = "id") String id,@RequestParam(name = "state") boolean state) {
+    	try {
+            return new ResponseEntity<>(responseService.markAsPaid(id,state), HttpStatus.CREATED);	
+    	}catch(Exception ex ) {
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND) ; 
+    	}
+    }
+    
+    
     
     @GetMapping
     public ResponseEntity<List<FormResponse>> getAllResponses() {
