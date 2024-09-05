@@ -22,10 +22,10 @@ function getData() {
                                                 <th>التاريخ</th>
                                                 <th>الباقة</th>
                                                 <th>حالة الدفع</th>
-                                                <th> </th>
-                                                <th> </th>
-                                                <th> </th>
-                                                <th> </th>
+                                                <th>مدفوع</th>
+                                                <th>غير مدفوع</th>
+                                                <th>عرض</th>
+                                                <th>حذف</th>
                                             </tr>
                                         </thead>
                                         <tbody id="packagesTableBody">`;

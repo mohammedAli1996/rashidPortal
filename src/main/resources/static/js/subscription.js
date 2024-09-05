@@ -1,52 +1,63 @@
-window.onload = function() {
+window.onload = function () {
     fetchPackages();
 };
 
-// document.getElementById('packageForm').addEventListener('submit', function(event) {
-//     event.preventDefault();
-//     const formtitle = document.getElementById('formtitle').value;
-//     const formDescription = document.getElementById('formDescription').value;
 
-//     const formPackage = {
-//         formtitle: formtitle,
-//         formDescription: formDescription
-//     };
-
-//     fetch('/api/subscription-form', {
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json',
-//         },
-//         body: JSON.stringify(formPackage),
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         addPackageToTable(data);
-//         document.getElementById('packageForm').reset();
-//     })
-//     .catch(error => console.error('Error:', error));
-// });
 
 function fetchPackages() {
-    fetch('/api/subscription-form')
-        .then(response => response.json())
-        .then(data => {
-            data.forEach(package => addPackageToTable(package));
-        })
-        .catch(error => console.error('Error:', error));
+    $.ajax({
+        type: 'GET',
+        url: '/api/subscription-form',
+        success: function (response) {
+            var cnt = `<table id="datatable" class="table table-bordered dt-responsive nowrap"
+                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>العنوان</th>
+                                                <th>التوصيف</th>
+                                                <th>العمليات</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>`;
+
+            response.forEach(package => {
+                cnt += addPackageToTable(package);
+            });
+
+
+            cnt += `  </tbody>
+                                    </table>`;
+            document.getElementById("packagesTableBody").innerHTML = cnt;
+
+            $('#datatable').DataTable({
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'>",
+                        "next": "<i class='mdi mdi-chevron-right'>"
+                    }
+                },
+                "drawCallback": function () {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
+                }
+            });
+
+        },
+        error: function (error) {
+            console.error("Error subscriptions")
+        }
+    });
 }
 
 function addPackageToTable(package) {
-    const tableBody = document.getElementById('packagesTableBody');
-    const row = document.createElement('tr');
-    row.innerHTML = `
+    return `
+    <tr>
         <td>${package.formtitle}</td>
         <td>${package.formDescription}</td>
         <td><button class="btn btn-primary" onclick="viewForm('${package.id}')">عرض</button></td>
+        </tr>
     `;
-    tableBody.appendChild(row);
 }
 
 function viewForm(id) {
-    window.location.href = "/adminstration/viewForm?id="+id;
+    window.location.href = "/adminstration/viewForm?id=" + id;
 }

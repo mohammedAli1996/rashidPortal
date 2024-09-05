@@ -96,12 +96,42 @@ function getFormDetails() {
             _("formtitle").value = response.formtitle;
             _("formDescription").value = response.formDescription;
             document.getElementById('packagesTableBody').innerHTML = ``;
+            var cnt = `<table id="datatable" class="table table-bordered dt-responsive nowrap"
+                                        style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+                                        <thead>
+                                            <tr>
+                                                <th>السؤال</th>
+                                                <th>نوع السؤال</th>
+                                                <th>الخيارات</th>
+                                                <th>تعديل</th>
+                                                <th>حذف</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>`;
             if (response.questions != null && response.questions.length > 0) {
                 response.questions.forEach(question => {
                     questionsMap.set(question.id, question);
-                    addQuestionToTable(question);
+                    cnt += addQuestionToTable(question);
                 });
             }
+
+            cnt += ` </tbody>
+                                    </table>` ;
+
+            document.getElementById("packagesTableBody").innerHTML = cnt;
+
+            $('#datatable').DataTable({
+                "language": {
+                    "paginate": {
+                        "previous": "<i class='mdi mdi-chevron-left'>",
+                        "next": "<i class='mdi mdi-chevron-right'>"
+                    }
+                },
+                "drawCallback": function () {
+                    $('.dataTables_paginate > .pagination').addClass('pagination-rounded');
+                }
+            });
+
         },
         error: function (error) {
             console.error("Error subscriptions")
@@ -117,18 +147,16 @@ function addQuestionToTable(question) {
             optionsAddon += element + " - "
         });
     }
-    const tableBody = document.getElementById('packagesTableBody');
-    const row = document.createElement('tr');
-    row.innerHTML = `
+    var res = `
+    <tr>
         <td>${question.question}</td>
         <td>${question.type}</td>
         <td>${optionsAddon}</td>
-        <td>
-        <button class="btn btn-secondary" onclick="editQuestion('${question.id}')">تعديل</button>
-        <button class="btn btn-danger" onclick="deleteQuestion('${question.id}')">حذف</button>
-        </td>
+        <td><button class="btn btn-secondary" onclick="editQuestion('${question.id}')">تعديل</button></td>
+         <td><button class="btn btn-danger" onclick="deleteQuestion('${question.id}')">حذف</button></td>
+        </tr>
     `;
-    tableBody.appendChild(row);
+    return res;
 }
 
 
