@@ -147,10 +147,23 @@ function addQuestionToTable(question) {
             optionsAddon += element + " - "
         });
     }
+
+    var qType = "" ; 
+
+    if(question.type === "TEXT" ){
+        qType = "نص";
+    }else if(question.type === "RADIO" ){
+        qType = "اختيار من متعدد (خيار واحد)";
+    }else if(question.type === "MULTI" ){
+        qType = "اختيار من متعدد (عدة خيارات)";
+    }else if(question.type === "FILE" ){
+        qType = "ملف";
+    }
+
     var res = `
     <tr>
         <td>${question.question}</td>
-        <td>${question.type}</td>
+        <td>`+qType+`</td>
         <td>${optionsAddon}</td>
         <td><button class="btn btn-secondary" onclick="editQuestion('${question.id}')">تعديل</button></td>
          <td><button class="btn btn-danger" onclick="deleteQuestion('${question.id}')">حذف</button></td>
