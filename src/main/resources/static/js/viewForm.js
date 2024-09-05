@@ -48,7 +48,8 @@ $(document).ready(function () {
             parentFormId: id,
             question: question,
             type: type,
-            options: options
+            options: options,
+            requiredQ:_("requiredQ").checked
         };
 
         $.ajax({
@@ -103,6 +104,7 @@ function getFormDetails() {
                                                 <th>السؤال</th>
                                                 <th>نوع السؤال</th>
                                                 <th>الخيارات</th>
+                                                <th>السؤال مطلوب ؟</th>
                                                 <th>تعديل</th>
                                                 <th>حذف</th>
                                             </tr>
@@ -160,11 +162,19 @@ function addQuestionToTable(question) {
         qType = "ملف";
     }
 
+    var requiredAddontext = "" ;
+    if(question.requiredQ){
+        requiredAddontext = "نعم";
+    }else{
+        requiredAddontext = "لا";
+    }
+
     var res = `
     <tr>
         <td>${question.question}</td>
         <td>`+qType+`</td>
         <td>${optionsAddon}</td>
+        <td>`+requiredAddontext+`</td>
         <td><button class="btn btn-secondary" onclick="editQuestion('${question.id}')">تعديل</button></td>
          <td><button class="btn btn-danger" onclick="deleteQuestion('${question.id}')">حذف</button></td>
         </tr>
@@ -199,6 +209,9 @@ function editQuestion(qid) {
     var qstn = questionsMap.get(qid);
     _("edtquestionText").value = qstn.question;
     _("edtquestionType").value = qstn.type;
+
+    _("eRequiredQ").checked = qstn.requiredQ ; 
+
     document.getElementById("edtOptionsPLH").innerHTML = ``;
     var qOptions = qstn.options;
     if (qstn.type === 'RADIO' || qstn.type === 'MULTI') {
@@ -247,6 +260,7 @@ function changeQType() {
 
 function updateQuestion() {
     var question = $('#edtquestionText').val();
+    var requiredQ = document.getElementById("eRequiredQ").checked ; 
     var type = $('#edtquestionType').val();
     var options = [];
 
@@ -263,7 +277,8 @@ function updateQuestion() {
         id: currQID,
         question: question,
         type: type,
-        options: options
+        options: options,
+        requiredQ:requiredQ
     };
 
     $.ajax({

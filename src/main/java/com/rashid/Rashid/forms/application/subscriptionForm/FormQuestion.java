@@ -30,7 +30,11 @@ public class FormQuestion {
 	
 	private List<String> options ; 
 	
+	
+	private boolean requiredQ ; 
+	
 	private boolean deleted ; 
 
 	
 }
+ 

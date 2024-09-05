@@ -69,13 +69,20 @@ function getFormData() {
                     }
                     var activeAddon = "";
                     var cnt = "";
+
+                    var requiredAddon = `` , requiredAddonTwo = `` ; 
+                    if(element.requiredQ){
+                        requiredAddon = `style="display:none;"`;
+                        requiredAddonTwo = ` *`;
+                    }
+
                     if (element.type === "TEXT") {
                         cnt = `<div class="question-container ` + activeAddon + `">
-                                    <div class="question">`+ element.question + ` :</div>
+                                    <div class="question">`+ element.question + requiredAddonTwo+ ` :</div>
                                     <div class="options">
                                         <input type="text" id="txtqstn`+ element.id + `" onkeyup="addAnswerText('` + element.id + `','txtqstn` + element.id + `','nxtBtn` + element.id + `')"/>
                                         <a class="btn" onclick="previousQuestion()">السابق</a>
-                                        <a class="btn" id="nxtBtn`+ element.id + `" style="display:none;" onclick="nextQuestion()">التالي</a>
+                                        <a class="btn" id="nxtBtn`+ element.id + `" `+requiredAddon+` onclick="nextQuestion()">التالي</a>
 
                                     </div>
                                 </div>` ;
@@ -108,7 +115,7 @@ function getFormData() {
                             </div>`;
                     } else if (element.type === "FILE") {
                         cnt = `<div class="question-container ` + activeAddon + `">
-                                    <div class="question">`+ element.question + ` :</div>
+                                    <div class="question">`+ element.question + requiredAddonTwo +  ` :</div>
                                     <div class="options">
                                         <div class="row">
                                             <div class="file-upload-wrapper">
@@ -119,7 +126,7 @@ function getFormData() {
                                         </div>
                                         <a class="btn" onclick="previousQuestion()">السابق</a>
                                         <div class="loader" style="display:none;" id="loaderId`+ element.id + `"></div>
-                                        <a class="btn" style="display:none;" id="nxtBtn`+ element.id + `" onclick="nextQuestion()">التالي</a>
+                                        <a class="btn" `+requiredAddon+` id="nxtBtn`+ element.id + `" onclick="nextQuestion()">التالي</a>
                                     </div>
                                 </div>`;
                     }
@@ -325,11 +332,15 @@ function submitResponse() {
             responses.push(answer);
         }
         else if (question.type === "FILE") {
+            var fileValue = [];
+            if (filesMap.has(question.id)) {
+                fileValue = filesMap.get(question.id) ; 
+            } 
             var answer = {
                 questionId: question.id,
                 question: question.question,
                 questionType: question.type,
-                answersList: filesMap.get(question.id)
+                answersList: fileValue
             }
             responses.push(answer);
         }

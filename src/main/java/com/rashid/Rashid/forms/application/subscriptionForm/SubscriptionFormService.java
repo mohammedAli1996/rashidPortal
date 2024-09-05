@@ -79,7 +79,8 @@ public class SubscriptionFormService {
 		FormQuestion question = getQuestionById(formQuestion.getId());
 		question.setQuestion(formQuestion.getQuestion())
 				.setType(formQuestion.getType())
-				.setOptions(formQuestion.getOptions());
+				.setOptions(formQuestion.getOptions())
+				.setRequiredQ(formQuestion.isRequiredQ());
 		return formQuestionRepository.save(question);
 	}
 	

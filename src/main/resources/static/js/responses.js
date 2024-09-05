@@ -96,10 +96,14 @@ function viewResponse(resId) {
         } else if (element.questionType === "FILE") {
             if (element.answersList != null) {
                 document.getElementById("modalBdy").innerHTML += `<label class="form-label">` + element.question + `:</label>  <br>`;
-                element.answersList.forEach(subAnswer => {
-                    document.getElementById("modalBdy").innerHTML += `
-                    <a href="/api/dfs/getLocalFile/`+ subAnswer + `">تحميل المرفق </a> <br>`;
-                });
+                if(element.answersList.length === 0 ){
+                    document.getElementById("modalBdy").innerHTML += `لا يوجد`;
+                }else{
+                    element.answersList.forEach(subAnswer => {
+                        document.getElementById("modalBdy").innerHTML += `
+                        <a href="/api/dfs/getLocalFile/`+ subAnswer + `">تحميل المرفق </a> <br>`;
+                    });
+                }
                 document.getElementById("modalBdy").innerHTML += `
                     <hr>`;
             }

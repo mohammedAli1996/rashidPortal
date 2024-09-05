@@ -111,20 +111,21 @@
 
                                         </div>
                                         <div class="col-auto">
-                                            <a class="btn btn-primary" onclick="showModal()" target="_blank">إضافة سؤال جديد </a>
+                                            <a class="btn btn-primary" onclick="showModal()" target="_blank">إضافة سؤال
+                                                جديد </a>
 
                                         </div>
                                     </div>
                                     <form id="packageForm">
                                         <div class="mb-3">
                                             <label for="formtitle" class="form-label">العنوان</label>
-                                            <input type="text" class="form-control" id="formtitle"
-                                                placeholder="" disabled>
+                                            <input type="text" class="form-control" id="formtitle" placeholder=""
+                                                disabled>
                                         </div>
                                         <div class="mb-3">
                                             <label for="formDescription" class="form-label">التوصيف</label>
-                                            <textarea class="form-control" id="formDescription" rows="3"
-                                                placeholder="" disabled></textarea>
+                                            <textarea class="form-control" id="formDescription" rows="3" placeholder=""
+                                                disabled></textarea>
                                         </div>
                                     </form>
 
@@ -132,7 +133,7 @@
                                     <h4 class="card-title">جميع الأسئلة</h4>
 
                                     <div id="packagesTableBody"></div>
-<!-- 
+                                    <!-- 
                                     <table id="datatable" class="table table-bordered dt-responsive nowrap"
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
@@ -162,15 +163,18 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="addQuestionModalLabel">إضافة سؤال جديد</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
                         </div>
                         <div class="modal-body">
                             <form id="addQuestionForm">
                                 <div class="mb-3">
                                     <label for="questionText" class="form-label">السؤال</label>
-                                    <input type="text" class="form-control" id="questionText"
-                                        placeholder="ادخل السؤال">
+                                    <input type="text" class="form-control" id="questionText" placeholder="ادخل السؤال">
                                 </div>
+                                <div class="mb-3">
+                                    <label for="requiredQ" class="form-label">السؤال مطلوب ؟ </label>
+                                    <input type="checkbox" id="requiredQ">
+                                </div>
+
                                 <div class="mb-3">
                                     <label for="questionType" class="form-label">نوع السؤال</label>
                                     <select class="form-control" id="questionType">
@@ -181,7 +185,8 @@
                                     </select>
                                 </div>
                                 <div id="optionsContainer" class="mb-3" style="display:none;">
-                                    <button type="button" class="btn btn-warning mb-3" onclick="addNewOption()">إضافة خيار</button> <br>
+                                    <button type="button" class="btn btn-warning mb-3" onclick="addNewOption()">إضافة
+                                        خيار</button> <br>
                                     <label class="form-label">الخيارات</label>
                                     <span id="optionsPLH">
                                         <input type="text" id="opt1" class="form-control mb-2" placeholder="الخيار 1">
@@ -205,7 +210,6 @@
                         <div class="modal-header">
                             <h5 class="modal-title" id="edtModalLabel">تعديل السؤال</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
                         </div>
                         <div class="modal-body">
                             <form id="addQuestionForm">
@@ -213,6 +217,10 @@
                                     <label for="edtquestionText" class="form-label">السؤال</label>
                                     <input type="text" class="form-control" id="edtquestionText"
                                         placeholder="ادخل السؤال">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="eRequiredQ" class="form-label">السؤال مطلوب ؟ </label>
+                                    <input type="checkbox" id="eRequiredQ">
                                 </div>
                                 <div class="mb-3">
                                     <label for="edtquestionType" class="form-label">نوع السؤال</label>
@@ -224,7 +232,8 @@
                                     </select>
                                 </div>
                                 <div id="edtoptionsContainer" class="mb-3" style="display:none;">
-                                    <button type="button" class="btn btn-warning mb-3" onclick="addNewEdtOption()">إاضافة خيار</button> <br>
+                                    <button type="button" class="btn btn-warning mb-3"
+                                        onclick="addNewEdtOption()">إاضافة خيار</button> <br>
                                     <label class="form-label">الخيارات</label>
                                     <span id="edtOptionsPLH"></span>
                                 </div>
@@ -232,42 +241,13 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="updateQuestion()">تحديث السؤال</button>
+                            <button type="button" class="btn btn-primary" onclick="updateQuestion()">تحديث
+                                السؤال</button>
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">إلغاء</button>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- <div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title mt-0" id="myModalLabel">Add a group</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <label class="form-label">Group Name</label>
-                            <input type="text" class="form-control rounded chat-input ps-3" placeholder="">
-                            <br>
-                            <label class="form-label">Group Servers</label>
-                            <select class="form-control  rounded chat-input select2">
-                                <option>Select</option>
-                                <option value="l1">Location1</option>
-                                <option value="l2">Location2</option>
-                                <option value="l3">Location3</option>
-                            </select>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-light waves-effect"
-                                data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary waves-effect waves-light">Save</button>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
         </div>
 
     </div>
