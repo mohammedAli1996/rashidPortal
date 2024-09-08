@@ -20,6 +20,12 @@ public class ViewsController {
 	}
 	
 	
+	@GetMapping("/package1")
+	public String package1() {
+		return "site/package1";
+	}
+	
+	
 	
 	@GetMapping("/subscribe")
 	public String subscribe() {

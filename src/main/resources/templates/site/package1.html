@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Package</title>
+	<link rel="shortcut icon" href="../../assets/images/favicon.png">
+	<link href="../../assets/css/bootstrap-dark-rtl.min.css" id="bootstrap-style" rel="stylesheet" type="text/css" />
+
+	<link rel="stylesheet" href="../../site/assets/css/slick.min.css">
+	<link rel="stylesheet" href="../../site/assets/css/bootstrap-grid.css">
+	<link rel="stylesheet" href="../../site/assets/css/font-awesome.min.css">
+	<link rel="stylesheet" href="../../site/assets/css/style.css">
+
+
+
+	<style>
+		.loader {
+			width: 50px;
+			aspect-ratio: 1;
+			border-radius: 50%;
+			background:
+				radial-gradient(farthest-side, #f03355 95%, #0000) 50% 1px/12px 12px no-repeat,
+				radial-gradient(farthest-side, #0000 calc(100% - 14px), #ccc 0);
+			animation: l9 2s infinite linear;
+		}
+
+		@keyframes l9 {
+			to {
+				transform: rotate(1turn)
+			}
+		}
+	</style>
+
+
+</head>
+
+<body>
+
+	<header class="header">
+
+		<div class="top-panel">
+
+			<div class="container">
+				<div class="header-right">
+					<a href="/index"><img class="logo" src="../../site/assets/img/logo.png" alt=""></a>
+
+
+				</div>
+
+				<div class="header-left">
+					<ul class="social-list">
+						<li><a target="_blank" href="#"><i class="fa fa-snapchat-ghost" aria-hidden="true"></i></a></li>
+						<li><a target="_blank" href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+						<li><a target="_blank" href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+						<li><a target="_blank"
+								href="https://www.instagram.com/rashid_alnajem?igsh=MWw0enMwbXprMmZ0cg%3D%3D"><i
+									class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					</ul>
+
+				</div>
+			</div>
+		</div>
+
+	</header>
+
+	<div class="card-desktop2">
+		<h3 class="mb-4">
+			الباقة الذهبية الخاصة
+			<span>(Vip)</span>
+		</h3>
+		<p>
+			
+		   تشمل جدول تدريبي كامل لمدة ١٢ اسبوع أي مايقارب ٣ شهور
+		   <br><br>
+		   
+		   تتضمن الأهداف الأساسية للتغذية من: [ السعرات حرارية - البروتين - كاربوهيدرات - دهون - والألياف ]، ممكن للمشترك تقديم هذه الماكروز لمطعم دايت، ممكن يتابع السعرات  بنفسه، وممكن يستعين بالأمثلة للوجبات مع طريقة الطبخ الذي سيتم تقديمه، وسيكون هناك شرح وتعليمات لسهولة متابعة الماكروز والسعرات وتسجيلهم في الجدول للوصول لأفضل النتائج.
+		   
+		   <br><br>
+		   تتضمن الأهداف الأساسية للنشاط كالخطوات والكارديو والمكملات التي قد تساعد في الوصول للهدف بشكل أفضل.
+		   <br><br>
+		   
+		   تتضمن جدول تمرين كامل يتكون من مرحلتين، وكل مرحلة مدتها ٦-٨ أسابيع تشمل: [ اسم التمرين -  فيديو شرح خاص لتكنيك كل تمرين  لوضوح الحركة - وعدد الجولات والتكرارات لكل تمرين - وأوقات الراحه - وسرعة التكرار في كل تمرين وأي ملاحظات خاصة التكنيك في التمرين ].
+		   
+		   <br><br>
+		   وتشمل خانة متابعه يومية ومتابعه كل اسبوع للتطورات والبيانات كعدد ساعات النوم، التغذية، الخطوات، والأداء في التمارين، ومدرب مساعد لمتابعة تكنيكات التمارين.
+		   <br><br>
+		   تشمل مكالمتين زوم نهاية كل مرحلة مكالمة لشرح التعديلات بالجدول والاجابة على أي سؤال للمشترك، فيعتبر جانب تثقيفي مهم للمشترك
+		   <br><br>
+		   لاتشمل كورس هرمون اذا الشخص مهتم، الكورسات فقط للاشتراك في باقة محسنات الأداء
+		   <br><br>
+		   
+		   سعر الباقة ٥٨٥دولار أمريكي أي مايقارب ١٨٠د.ك.
+		   <br>
+		   اذا انت طالب بيكون لك خصم ٢٠٪؜ اضافي
+		   <br><br>
+		   ملاحظة: حط في بالك هذه الباقة بتكون لك الأولوية في الاسئلة والمتابعة، ولك مكالمتين زوم معاي، يتم فيها شرح التعديلات بالجدول فتتثقف وانت تتطور وهذا الي يميزها عن الباقة العادية وعندك متابعة اسبوعية
+		
+		
+		</p>
+		<a class="btn" href="/subscribe">اشترك الآن</a>
+
+	</div>
+
+	<script>
+		const questions = document.querySelectorAll('.question-container');
+		const progressBar = document.getElementById('progress-bar');
+		let currentQuestionIndex = 0;
+
+		function nextQuestion() {
+			if (currentQuestionIndex < questions.length - 1) {
+				questions[currentQuestionIndex].classList.remove('active');
+				currentQuestionIndex++;
+				questions[currentQuestionIndex].classList.add('active');
+				updateProgressBar();
+			}
+		}
+
+		function previousQuestion() {
+			if (currentQuestionIndex > 0) {
+				questions[currentQuestionIndex].classList.remove('active');
+				currentQuestionIndex--;
+				questions[currentQuestionIndex].classList.add('active');
+				updateProgressBar();
+			}
+		}
+
+		function updateProgressBar() {
+			const progress = ((currentQuestionIndex + 1) / questions.length) * 100;
+			progressBar.style.width = progress + '%';
+		}
+
+		// JavaScript to update the file name display
+		const fileUploader = document.getElementById('fileUploader');
+		const fileUploadText = document.getElementById('file-upload-text');
+
+		fileUploader.addEventListener('change', function () {
+			if (fileUploader.files.length > 0) {
+				fileUploadText.textContent = fileUploader.files[0].name;
+			} else {
+				fileUploadText.textContent = 'لم يتم اختيار ملف';
+			}
+		});
+	</script>
+
+</body>
+
+</html>
