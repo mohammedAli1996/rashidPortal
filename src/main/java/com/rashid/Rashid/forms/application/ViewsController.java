@@ -25,6 +25,15 @@ public class ViewsController {
 		return "site/package1";
 	}
 	
+	@GetMapping("/package2")
+	public String package2() {
+		return "site/package2";
+	}
+	
+	@GetMapping("/package3")
+	public String package3() {
+		return "site/package3";
+	}
 	
 	
 	@GetMapping("/subscribe")

@@ -23,6 +23,10 @@ Version: 1.0
   --primary-color: #b2022f
 }
 
+html{
+  scroll-behavior: smooth;
+
+}
 
 html,
 body,
@@ -7368,4 +7372,20 @@ body {
 
 .terms-txt{
   font-size: 13px;
+}
+
+.subTitle{
+  font-size: 16px;
+  font-weight: bold;
+  place-self: flex-start
+}
+
+.dot-sty{
+  font-weight: bolder;
+  font-size: 18px;
+}
+
+.subContent{
+  place-self: flex-start
+
 }
