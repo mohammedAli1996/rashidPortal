@@ -37,7 +37,8 @@ public class ViewsController {
 	
 	
 	@GetMapping("/subscribe")
-	public String subscribe() {
+	public String subscribe(@RequestParam(name = "packageType") String packageType, 
+			@RequestParam(name = "packageName") String packageName) {
 		return "site/subscribe";
 	}
 	

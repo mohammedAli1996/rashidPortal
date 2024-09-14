@@ -1,15 +1,23 @@
 var student = false;
 var selectedPackage = '1', selectedPackageName = 'VIP';
 var packageAmount = 0;
-var formId ; 
+var formId;
 
 $(document).ready(function () {
+    const queryParams = new URLSearchParams(window.location.search);
+
+    selectedPackage = queryParams.get('packageType');
+    selectedPackageName = queryParams.get('packageName');
+
+    console.log(selectedPackage);
+    console.log(selectedPackageName);
+
     $.ajax({
         url: '/api/subscription-form/mainForm',
         type: 'GET',
         contentType: 'application/json',
         success: function (response) {
-            formId = response.id ; 
+            formId = response.id;
             getFormData();
         },
         error: function (error) {
@@ -17,7 +25,7 @@ $(document).ready(function () {
         }
     });
 
-    
+
 })
 
 
@@ -45,44 +53,44 @@ function getFormData() {
                                             </div>
                                         </div>`;
                 response.questions.forEach(element => {
-                    if (itr === response.questions.length - 1) {
-                        if (student) {
-                            _("qstns").innerHTML += `<div class="question-container">
-                                                        <div class="question"> الباقة المطلوبة:</div>
-                                                        <div class="options">
-                                                            <button onclick="choosePkg('1','VIP')">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
-                                                            <button onclick="choosePkg('2','Normal')">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
-                                                            <button onclick="choosePkg('3','Hermons')">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
-                                                        </div>
-                                                    </div>`
-                        } else {
-                            _("qstns").innerHTML += `<div class="question-container">
-                                                        <div class="question"> الباقة المطلوبة:</div>
-                                                        <div class="options">
-                                                            <button onclick="choosePkg('1','VIP')">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
-                                                            <button onclick="choosePkg('2','Normal')">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
-                                                            <button onclick="choosePkg('3','Hermons')">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
-                                                        </div>
-                                                    </div>`
-                        }
+                    // if (itr === response.questions.length - 1) {
+                    //     if (student) {
+                    //         _("qstns").innerHTML += `<div class="question-container">
+                    //                                     <div class="question"> الباقة المطلوبة:</div>
+                    //                                     <div class="options">
+                    //                                         <button onclick="choosePkg('1','VIP')">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
+                    //                                         <button onclick="choosePkg('2','Normal')">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
+                    //                                         <button onclick="choosePkg('3','Hermons')">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
+                    //                                     </div>
+                    //                                 </div>`
+                    //     } else {
+                    //         _("qstns").innerHTML += `<div class="question-container">
+                    //                                     <div class="question"> الباقة المطلوبة:</div>
+                    //                                     <div class="options">
+                    //                                         <button onclick="choosePkg('1','VIP')">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
+                    //                                         <button onclick="choosePkg('2','Normal')">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
+                    //                                         <button onclick="choosePkg('3','Hermons')">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
+                    //                                     </div>
+                    //                                 </div>`
+                    //     }
 
-                    }
+                    // }
                     var activeAddon = "";
                     var cnt = "";
 
-                    var requiredAddon = `` , requiredAddonTwo = `` ; 
-                    if(element.requiredQ){
+                    var requiredAddon = ``, requiredAddonTwo = ``;
+                    if (element.requiredQ) {
                         requiredAddon = `style="display:none;"`;
                         requiredAddonTwo = ` *`;
                     }
 
                     if (element.type === "TEXT") {
                         cnt = `<div class="question-container ` + activeAddon + `">
-                                    <div class="question">`+ element.question + requiredAddonTwo+ ` :</div>
+                                    <div class="question">`+ element.question + requiredAddonTwo + ` :</div>
                                     <div class="options">
                                         <input type="text" id="txtqstn`+ element.id + `" onkeyup="addAnswerText('` + element.id + `','txtqstn` + element.id + `','nxtBtn` + element.id + `')"/>
                                         <a class="btn" onclick="previousQuestion()">السابق</a>
-                                        <a class="btn" id="nxtBtn`+ element.id + `" `+requiredAddon+` onclick="nextQuestion()">التالي</a>
+                                        <a class="btn" id="nxtBtn`+ element.id + `" ` + requiredAddon + ` onclick="nextQuestion()">التالي</a>
 
                                     </div>
                                 </div>` ;
@@ -115,7 +123,7 @@ function getFormData() {
                             </div>`;
                     } else if (element.type === "FILE") {
                         cnt = `<div class="question-container ` + activeAddon + `">
-                                    <div class="question">`+ element.question + requiredAddonTwo +  ` :</div>
+                                    <div class="question">`+ element.question + requiredAddonTwo + ` :</div>
                                     <div class="options">
                                         <div class="row">
                                             <div class="file-upload-wrapper">
@@ -126,7 +134,7 @@ function getFormData() {
                                         </div>
                                         <a class="btn" onclick="previousQuestion()">السابق</a>
                                         <div class="loader" style="display:none;" id="loaderId`+ element.id + `"></div>
-                                        <a class="btn" `+requiredAddon+` id="nxtBtn`+ element.id + `" onclick="nextQuestion()">التالي</a>
+                                        <a class="btn" `+ requiredAddon + ` id="nxtBtn` + element.id + `" onclick="nextQuestion()">التالي</a>
                                     </div>
                                 </div>`;
                     }
@@ -334,8 +342,8 @@ function submitResponse() {
         else if (question.type === "FILE") {
             var fileValue = [];
             if (filesMap.has(question.id)) {
-                fileValue = filesMap.get(question.id) ; 
-            } 
+                fileValue = filesMap.get(question.id);
+            }
             var answer = {
                 questionId: question.id,
                 question: question.question,
