@@ -127,7 +127,6 @@ function getFormData() {
                                     </div>
                                 </div>`;
                     }
-                    console.log("Khara Print");
                     _("qstns").innerHTML += cnt;
                     itr++;
                 });
