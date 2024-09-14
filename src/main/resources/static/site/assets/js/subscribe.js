@@ -45,36 +45,23 @@ function getFormData() {
             var itr = 0;
             _("qstns").innerHTML = "";
             if (response.questions != null) {
-                _("qstns").innerHTML += `<div class="question-container active">
+                // _("qstns").innerHTML += `<div class="question-container active">
+                //                             <div class="question">هل انت طالب ؟ ( خصم 20% للطلاب ) :</div>
+                //                             <div class="options">
+                //                                 <button onclick="callStnt()">أنا طالب</button>
+                //                                 <button onclick="nextQuestion()">أنا موظف</button>
+                //                             </div>
+                //                         </div>`;
+                response.questions.forEach(element => {
+                    if (itr === 2) {
+                        _("qstns").innerHTML += `<div class="question-container active">
                                             <div class="question">هل انت طالب ؟ ( خصم 20% للطلاب ) :</div>
                                             <div class="options">
                                                 <button onclick="callStnt()">أنا طالب</button>
                                                 <button onclick="nextQuestion()">أنا موظف</button>
                                             </div>
-                                        </div>`;
-                response.questions.forEach(element => {
-                    // if (itr === response.questions.length - 1) {
-                    //     if (student) {
-                    //         _("qstns").innerHTML += `<div class="question-container">
-                    //                                     <div class="question"> الباقة المطلوبة:</div>
-                    //                                     <div class="options">
-                    //                                         <button onclick="choosePkg('1','VIP')">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
-                    //                                         <button onclick="choosePkg('2','Normal')">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
-                    //                                         <button onclick="choosePkg('3','Hermons')">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
-                    //                                     </div>
-                    //                                 </div>`
-                    //     } else {
-                    //         _("qstns").innerHTML += `<div class="question-container">
-                    //                                     <div class="question"> الباقة المطلوبة:</div>
-                    //                                     <div class="options">
-                    //                                         <button onclick="choosePkg('1','VIP')">الذهبية الخاصة Vip: ٥٨٥ دولار أمريكي (٣ شهور)</button>
-                    //                                         <button onclick="choosePkg('2','Normal')">الذهبية العادية: ٤٨٨ دولار أمريكي (٣ شهور)</button>
-                    //                                         <button onclick="choosePkg('3','Hermons')">الهرمونات والتجهيز: ٦٨٢ دولار أمريكي (٤ شهور)</button>
-                    //                                     </div>
-                    //                                 </div>`
-                    //     }
-
-                    // }
+                                        </div>`
+                    }
                     var activeAddon = "";
                     var cnt = "";
 
