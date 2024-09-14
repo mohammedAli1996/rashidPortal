@@ -9,9 +9,6 @@ $(document).ready(function () {
     selectedPackage = queryParams.get('packageType');
     selectedPackageName = queryParams.get('packageName');
 
-    console.log(selectedPackage);
-    console.log(selectedPackageName);
-
     $.ajax({
         url: '/api/subscription-form/mainForm',
         type: 'GET',
@@ -53,8 +50,14 @@ function getFormData() {
                 //                             </div>
                 //                         </div>`;
                 response.questions.forEach(element => {
-                    if (itr === 2) {
-                        _("qstns").innerHTML += `<div class="question-container active">
+                    var activeAddon = "";
+                    var cnt = "";
+
+                    if(itr == 0 ){
+                        activeAddon = "active"; 
+                    }
+                    if (itr == 2) {
+                        _("qstns").innerHTML += `<div class="question-container">
                                             <div class="question">هل انت طالب ؟ ( خصم 20% للطلاب ) :</div>
                                             <div class="options">
                                                 <button onclick="callStnt()">أنا طالب</button>
@@ -62,8 +65,7 @@ function getFormData() {
                                             </div>
                                         </div>`
                     }
-                    var activeAddon = "";
-                    var cnt = "";
+
 
                     var requiredAddon = ``, requiredAddonTwo = ``;
                     if (element.requiredQ) {
@@ -125,6 +127,7 @@ function getFormData() {
                                     </div>
                                 </div>`;
                     }
+                    console.log("Khara Print");
                     _("qstns").innerHTML += cnt;
                     itr++;
                 });
