@@ -90,7 +90,7 @@ function getFormData() {
                         <div class="options">
                             <input type="text" id="txtqstnC" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','nxtBtn` + element.id + `')"/>
                         </div>
-                            <a class="btn" id="nxtBtn`+ element.id + `" ` + requiredAddon + ` onclick="nextQuestion()">التالي</a>
+                            <a class="btn" style="display:none;" id="nxtBtn`+ element.id + `" ` + requiredAddon + ` onclick="nextQuestion()">التالي</a>
                             </div>
                         ` ;
                     }
@@ -112,7 +112,7 @@ function getFormData() {
                         <div class="options">
                             <input type="text" id="txtqstnCB" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnAB','txtqstnBB','txtqstnCB','nxtBtn` + element.id + `')"/>
                         </div>
-                            <a class="btn" id="nxtBtn`+ element.id + `" ` + requiredAddon + ` onclick="nextQuestion()">التالي</a>
+                            <a class="btn" style="display:none;" id="nxtBtn`+ element.id + `" ` + requiredAddon + ` onclick="nextQuestion()">التالي</a>
                             </div>
                         ` ;
                     }
