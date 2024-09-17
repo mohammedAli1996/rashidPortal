@@ -53,8 +53,8 @@ function getFormData() {
                     var activeAddon = "";
                     var cnt = "";
 
-                    if(itr == 0 ){
-                        activeAddon = "active"; 
+                    if (itr == 0) {
+                        activeAddon = "active";
                     }
                     if (itr == 2) {
                         _("qstns").innerHTML += `<div class="question-container">
@@ -73,7 +73,50 @@ function getFormData() {
                         requiredAddonTwo = ` *`;
                     }
 
-                    if (element.type === "TEXT") {
+
+                    if (itr === 0) {
+                        cnt = `<div class="question-container active">
+                        <div class="question"> الاسم * :</div>
+                        <div class="options">
+                            <input type="text" id="txtqstnA" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','nxtBtn` + element.id + `')"/>
+                        </div>
+
+                        <div class="question"> رقم الهاتف * :</div>
+                        <div class="options">
+                            <input type="text" id="txtqstnB" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','nxtBtn` + element.id + `')"/>
+                        </div>
+
+                        <div class="question"> البريد الالكتروني * :</div>
+                        <div class="options">
+                            <input type="text" id="txtqstnC" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','nxtBtn` + element.id + `')"/>
+                        </div>
+                            <a class="btn" id="nxtBtn`+ element.id + `" ` + requiredAddon + ` onclick="nextQuestion()">التالي</a>
+                            </div>
+                        ` ;
+                    }
+
+
+                    else if (itr === 1) {
+                        cnt = `<div class="question-container active">
+                        <div class="question"> الوزن * :</div>
+                        <div class="options">
+                            <input type="text" id="txtqstnAB" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnAB','txtqstnBB','txtqstnCB','nxtBtn` + element.id + `')"/>
+                        </div>
+
+                        <div class="question"> الطول * :</div>
+                        <div class="options">
+                            <input type="text" id="txtqstnBB" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnAB','txtqstnBB','txtqstnCB','nxtBtn` + element.id + `')"/>
+                        </div>
+
+                        <div class="question"> العمر * :</div>
+                        <div class="options">
+                            <input type="text" id="txtqstnCB" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnAB','txtqstnBB','txtqstnCB','nxtBtn` + element.id + `')"/>
+                        </div>
+                            <a class="btn" id="nxtBtn`+ element.id + `" ` + requiredAddon + ` onclick="nextQuestion()">التالي</a>
+                            </div>
+                        ` ;
+                    }
+                    else if (element.type === "TEXT") {
                         cnt = `<div class="question-container ` + activeAddon + `">
                                     <div class="question">`+ element.question + requiredAddonTwo + ` :</div>
                                     <div class="options">
@@ -160,6 +203,19 @@ function addAnswerRadio(questionId, answer) {
 function addAnswerText(questionId, answerInputId, nextButtonId) {
     answersMap.set(questionId, _(answerInputId).value);
     if (_(answerInputId).value != null && _(answerInputId).value.trim() != "") {
+        _(nextButtonId).style.display = "inline-block";
+    } else {
+        _(nextButtonId).style.display = "none";
+    }
+}
+
+
+function addAnswerTextCatted(questionId, answerInputId1, answerInputId2, answerInputId3, nextButtonId) {
+    var answerTextCatted = _(answerInputId1).value + " - " + _(answerInputId2).value + " - " + _(answerInputId3).value;
+    answersMap.set(questionId, answerTextCatted);
+    if (_(answerInputId1).value != null && _(answerInputId1).value.trim() != "" &&
+        _(answerInputId2).value != null && _(answerInputId2).value.trim() != "" &&
+        _(answerInputId3).value != null && _(answerInputId3).value.trim() != "") {
         _(nextButtonId).style.display = "inline-block";
     } else {
         _(nextButtonId).style.display = "none";
