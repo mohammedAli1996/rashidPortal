@@ -97,7 +97,7 @@ function getFormData() {
 
 
                     else if (itr === 1) {
-                        cnt = `<div class="question-container active">
+                        cnt = `<div class="question-container">
                         <div class="question"> الوزن * :</div>
                         <div class="options">
                             <input type="text" id="txtqstnAB" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnAB','txtqstnBB','txtqstnCB','nxtBtn` + element.id + `')"/>
