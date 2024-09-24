@@ -78,17 +78,22 @@ function getFormData() {
                         cnt = `<div class="question-container active">
                         <div class="question"> الاسم * :</div>
                         <div class="options">
-                            <input type="text" id="txtqstnA" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','nxtBtn` + element.id + `')"/>
+                            <input type="text" id="txtqstnA" onkeyup="addAnswerTextCattedFour('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','txtqstnD','nxtBtn` + element.id + `')"/>
                         </div>
 
-                        <div class="question"> رقم الهاتف * :</div>
+                        <div class="question">رقم الهاتف ( مع الرمز الدولي ) * </div>
                         <div class="options">
-                            <input type="text" id="txtqstnB" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','nxtBtn` + element.id + `')"/>
+                            <input type="text" id="txtqstnB" onkeyup="addAnswerTextCattedFour('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','txtqstnD','nxtBtn` + element.id + `')"/>
                         </div>
 
                         <div class="question"> البريد الالكتروني * :</div>
                         <div class="options">
-                            <input type="text" id="txtqstnC" onkeyup="addAnswerTextCatted('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','nxtBtn` + element.id + `')"/>
+                            <input type="text" id="txtqstnC" onkeyup="addAnswerTextCattedFour('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','txtqstnD','nxtBtn` + element.id + `')"/>
+                        </div>
+
+                        <div class="question">  بلد الإقامة * :</div>
+                        <div class="options">
+                            <input type="text" id="txtqstnD" onkeyup="addAnswerTextCattedFour('` + element.id + `','txtqstnA','txtqstnB','txtqstnC','txtqstnD','nxtBtn` + element.id + `')"/>
                         </div>
                             <a class="btn" style="display:none;" id="nxtBtn`+ element.id + `" ` + requiredAddon + ` onclick="nextQuestion()">التالي</a>
                             </div>
@@ -216,6 +221,19 @@ function addAnswerTextCatted(questionId, answerInputId1, answerInputId2, answerI
     if (_(answerInputId1).value != null && _(answerInputId1).value.trim() != "" &&
         _(answerInputId2).value != null && _(answerInputId2).value.trim() != "" &&
         _(answerInputId3).value != null && _(answerInputId3).value.trim() != "") {
+        _(nextButtonId).style.display = "inline-block";
+    } else {
+        _(nextButtonId).style.display = "none";
+    }
+}
+
+function addAnswerTextCattedFour(questionId, answerInputId1, answerInputId2, answerInputId3,answerInputId4, nextButtonId) {
+    var answerTextCatted = _(answerInputId1).value + " - " + _(answerInputId2).value + " - " + _(answerInputId3).value + " - " + _(answerInputId4).value;
+    answersMap.set(questionId, answerTextCatted);
+    if (_(answerInputId1).value != null && _(answerInputId1).value.trim() != "" &&
+        _(answerInputId2).value != null && _(answerInputId2).value.trim() != "" &&
+        _(answerInputId3).value != null && _(answerInputId3).value.trim() != "" &&
+        _(answerInputId4).value != null && _(answerInputId4).value.trim() != "") {
         _(nextButtonId).style.display = "inline-block";
     } else {
         _(nextButtonId).style.display = "none";
