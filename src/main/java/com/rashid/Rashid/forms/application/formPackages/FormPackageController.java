@@ -5,6 +5,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.rashid.Rashid.forms.application.RegLock.RegLock;
+import com.rashid.Rashid.forms.application.RegLock.RegLockRepo;
+
 import java.util.List;
 
 @RestController
@@ -14,6 +17,22 @@ public class FormPackageController {
     @Autowired
     private FormsService formsService;
 
+    @Autowired
+	private RegLockRepo regLockRepo;
+    
+    
+    
+    @GetMapping("/lckState")
+    public ResponseEntity<RegLock> getLockState() {
+    	try {
+            return new ResponseEntity<>(regLockRepo.findAll().get(0), HttpStatus.CREATED);	
+    	}catch(Exception ex ) {
+    		return new ResponseEntity<>(HttpStatus.NOT_FOUND) ; 
+    	}
+    }
+    
+    
+    
     // Create a new FormPackage
     @PostMapping
     public ResponseEntity<FormPackage> createFormPackage(@RequestBody FormPackage formPackage) {

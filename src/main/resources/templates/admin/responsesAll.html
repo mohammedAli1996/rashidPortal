@@ -88,6 +88,7 @@
                             <li><a href="/adminstration/subscriptionForms">اسئلة الاشتراكات </a>
                             <li><a href="/adminstration/responsesAll">الردود </a>
 
+
                         </ul>
                     </div>
                 </div>
@@ -100,7 +101,17 @@
         <div class="main-content" id="result">
             <div class="page-content">
                 <div class="container-fluid">
-
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="card-title">حالة التسجيل</h4>
+                                    <input type="text" class="form-control" name="" id="currState" disabled>
+                                    <button onclick="flipState()" class="btn btn-primary">تغيير حالة التسجيل</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
@@ -182,9 +193,9 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="modalBdy">
-                    
 
-                    
+
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light waves-effect" data-bs-dismiss="modal">إغلاق</button>

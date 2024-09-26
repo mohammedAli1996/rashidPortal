@@ -4,8 +4,46 @@ var responsesMap = new Map();
 
 $(document).ready(function () {
     getData();
+    getLockState();
 })
 
+
+function getLockState() {
+    $.ajax({
+        url: '/adminstration/regLock',
+        type: 'GET',
+        contentType: 'application/json',
+        success: function (response) {
+            if (response.canRegister) {
+                document.getElementById("currState").value = "مفتوح";
+            } else {
+                document.getElementById("currState").value = "مغلق";
+            }
+        },
+        error: function (error) {
+            showAlert("Error!", "Failed to add question!", "error");
+        }
+    });
+}
+
+function flipState() {
+    $.ajax({
+        url: '/adminstration/regLock',
+        type: 'POST',
+        contentType: 'application/json',
+        success: function (response) {
+            if (response.canRegister) {
+                document.getElementById("currState").value = "مفتوح";
+            } else {
+                document.getElementById("currState").value = "مغلق";
+            }
+            showAlert("تم بنجاح!", "تم تغيير حالة التسجيل بنجاح", "success");
+        },
+        error: function (error) {
+            showAlert("Error!", "حدث خطأ ما يرجى المحاولة مرة ثانية", "error");
+        }
+    });
+}
 
 
 function getData() {
@@ -14,7 +52,6 @@ function getData() {
         type: 'GET',
         contentType: 'application/json',
         success: function (response) {
-            console.log(response);
             var cnt = ` <table id="datatable" class="table table-bordered dt-responsive nowrap"
                                         style="border-collapse: collapse; border-spacing: 0; width: 100%;">
                                         <thead>
@@ -96,9 +133,9 @@ function viewResponse(resId) {
         } else if (element.questionType === "FILE") {
             if (element.answersList != null) {
                 document.getElementById("modalBdy").innerHTML += `<label class="form-label">` + element.question + `:</label>  <br>`;
-                if(element.answersList.length === 0 ){
+                if (element.answersList.length === 0) {
                     document.getElementById("modalBdy").innerHTML += `لا يوجد`;
-                }else{
+                } else {
                     element.answersList.forEach(subAnswer => {
                         document.getElementById("modalBdy").innerHTML += `
                         <a href="/api/dfs/getLocalFile/`+ subAnswer + `">تحميل المرفق </a> <br>`;

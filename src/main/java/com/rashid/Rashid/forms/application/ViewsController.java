@@ -1,8 +1,11 @@
 package com.rashid.Rashid.forms.application;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.rashid.Rashid.forms.application.RegLock.RegLockRepo;
 
 @Controller
 public class ViewsController {
@@ -19,26 +22,50 @@ public class ViewsController {
 		return "site/index";
 	}
 	
+	@GetMapping("/locked")
+	public String locked() {
+		return "site/locked";
+	}
+
+	
+	
+    @Autowired
+	private RegLockRepo regLockRepo;
+	
 	
 	@GetMapping("/package1")
 	public String package1() {
+		if(!regLockRepo.findAll().get(0).isCanRegister()) {
+			return "site/locked";
+		}
 		return "site/package1";
 	}
 	
 	@GetMapping("/package2")
 	public String package2() {
+		if(!regLockRepo.findAll().get(0).isCanRegister()) {
+			return "site/locked";
+		}
 		return "site/package2";
 	}
 	
 	@GetMapping("/package3")
 	public String package3() {
+		if(!regLockRepo.findAll().get(0).isCanRegister()) {
+			return "site/locked";
+		}
 		return "site/package3";
 	}
+	
+	
 	
 	
 	@GetMapping("/subscribe")
 	public String subscribe(@RequestParam(name = "packageType") String packageType, 
 			@RequestParam(name = "packageName") String packageName) {
+		if(!regLockRepo.findAll().get(0).isCanRegister()) {
+			return "site/locked";
+		}
 		return "site/subscribe";
 	}
 	
@@ -53,6 +80,7 @@ public class ViewsController {
 	public String getPackageTypes() {
 		return "admin/packages";
 	}
+
 	
 	@GetMapping("/adminstration/responsesAll")
 	public String responsesAll() {
