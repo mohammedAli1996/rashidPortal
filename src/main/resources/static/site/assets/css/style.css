@@ -7389,3 +7389,10 @@ body {
   place-self: flex-start
 
 }
+
+
+.specialOffer{
+  font-size: x-large;
+  font-weight: 600;
+  color: #dc3737;
+}
