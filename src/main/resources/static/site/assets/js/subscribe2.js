@@ -56,15 +56,15 @@ function getFormData() {
                     if (itr == 0) {
                         activeAddon = "active";
                     }
-                    if (itr == 2) {
-                        _("qstns").innerHTML += `<div class="question-container">
-                                            <div class="question">هل انت طالب ؟ ( خصم 20% للطلاب ) :</div>
-                                            <div class="options">
-                                                <button onclick="callStnt()">أنا طالب</button>
-                                                <button onclick="nextQuestion()">أنا موظف</button>
-                                            </div>
-                                        </div>`
-                    }
+                    // if (itr == 2) {
+                    //     _("qstns").innerHTML += `<div class="question-container">
+                    //                         <div class="question">هل انت طالب ؟ ( خصم 20% للطلاب ) :</div>
+                    //                         <div class="options">
+                    //                             <button onclick="callStnt()">أنا طالب</button>
+                    //                             <button onclick="nextQuestion()">أنا موظف</button>
+                    //                         </div>
+                    //                     </div>`
+                    // }
 
 
                     var requiredAddon = ``, requiredAddonTwo = ``;
@@ -284,29 +284,29 @@ function choosePkg(packageIndex, packageName) {
 
 function getPaymentLink() {
 
-    if (!student) {
-        if (selectedPackage === '1') {
-            packageAmount = 180;
-            return "https://portal.myfatoorah.com/KWT/la/05064177365884058";
-        } else if (selectedPackage === '2') {
-            packageAmount = 150;
-            return "https://portal.myfatoorah.com/KWT/la/05064177365883958";
-        } else {
-            packageAmount = 210;
-            return "https://portal.myfatoorah.com/KWT/la/05064177365884358";
-        }
-    } else {
-        if (selectedPackage === '1') {
-            packageAmount = 144;
-            return "https://portal.myfatoorah.com/KWT/la/05064177365884558";
-        } else if (selectedPackage === '2') {
-            packageAmount = 120;
-            return "https://portal.myfatoorah.com/KWT/la/05064177370487458";
-        } else {
-            packageAmount = 168;
-            return "https://portal.myfatoorah.com/KWT/la/05064177365884758";
-        }
-    }
+    // if (!student) {
+    //     if (selectedPackage === '1') {
+    //         packageAmount = 180;
+    //         return "https://portal.myfatoorah.com/KWT/la/05064177365884058";
+    //     } else if (selectedPackage === '2') {
+    //         packageAmount = 150;
+    //         return "https://portal.myfatoorah.com/KWT/la/05064177365883958";
+    //     } else {
+    //         packageAmount = 210;
+    //         return "https://portal.myfatoorah.com/KWT/la/05064177365884358";
+    //     }
+    // } else {
+    //     if (selectedPackage === '1') {
+    //         packageAmount = 144;
+    //         return "https://portal.myfatoorah.com/KWT/la/05064177365884558";
+    //     } else if (selectedPackage === '2') {
+    //         packageAmount = 120;
+    //         return "https://portal.myfatoorah.com/KWT/la/05064177370487458";
+    //     } else {
+    //         packageAmount = 168;
+    //         return "https://portal.myfatoorah.com/KWT/la/05064177365884758";
+    //     }
+    // }
 
 }
 
@@ -432,7 +432,8 @@ function submitResponse() {
         success: function (response) {
             _("sucMsg").style.display = "block";
             setTimeout(function () {
-                window.location.href = getPaymentLink();
+
+                // window.location.href = getPaymentLink();
             }, 2000);
         },
         error: function (xhr, status, error) {

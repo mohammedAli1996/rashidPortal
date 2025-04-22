@@ -3047,6 +3047,7 @@ blockquote:before {
   /* display: flex;
   flex-direction: column;
   align-items: center; */
+  border-radius: 15px;
   text-align: center;
   height: 100%;
   background-color: #272a31;
@@ -3100,7 +3101,7 @@ blockquote:before {
   transform: translateX(-50%);
   width: 45px;
   height: 4px;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
 }
 
 .red-line {
@@ -3117,7 +3118,7 @@ blockquote:before {
 
 
 .club-card-item .price-cover .price {
-  font-size: 40px;
+  font-size: 25px;
   padding-right: 6px;
   line-height: .75;
 }
@@ -3132,7 +3133,7 @@ blockquote:before {
   color: #fcbd56;
   display: block;
   line-height: .9;
-  font-size: 26px;
+  font-size: 24px;
 }
 
 .club-card-item .list {
