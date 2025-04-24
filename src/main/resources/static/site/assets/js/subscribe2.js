@@ -49,6 +49,7 @@ function getFormData() {
                 //                                 <button onclick="nextQuestion()">أنا موظف</button>
                 //                             </div>
                 //                         </div>`;
+
                 response.questions.forEach(element => {
                     var activeAddon = "";
                     var cnt = "";
@@ -120,6 +121,39 @@ function getFormData() {
                             <a class="btn" style="display:none;" id="nxtBtn`+ element.id + `" ` + requiredAddon + ` onclick="nextQuestion()">التالي</a>
                             </div>
                         ` ;
+                    }
+                    else if (itr === response.questions.length - 1) {
+                        var optionsTxt = ``;
+                        element.options.forEach(qOption => {
+                            optionsTxt += `<button onclick="addAnswerRadio('` + element.id + `' , '` + qOption + `' )">` + qOption + `</button>`;
+                        });
+                        if (selectedPackageName === "NormalStudents") {
+                            cnt = `<div class="question-container ` + activeAddon + `">
+                            <div class="question">هل حاب تاخذ عرض اشتراك ٣ شهور بقيمة ١٠٠د.ك بدل من ١٣٥د.ك؟ توفر عليك ٣٥د. :</div>
+                            <div class="options">
+                                `+ optionsTxt + `
+                            </div>
+                        </div>
+                        `;
+                        } else if (selectedPackageName === "Normal") {
+                            cnt = `<div class="question-container ` + activeAddon + `">
+                            <div class="question"> هل حاب تاخذ عرض اشتراك ٣ شهور بقيمة ١٤٥د.ك بدل من ١٨٠د.ك؟ توفر عليك ٣٥د.ك :</div>
+                            <div class="options">
+                                `+ optionsTxt + `
+                            </div>
+                        </div>
+                        `;
+                        } else {
+                            cnt = `<div class="question-container ` + activeAddon + `">
+                            <div class="question">هل حاب تاخذ عرض اشتراك ٣ شهور بقيمة ١٩٠د.ك بدل من ٢٤٠د.ك، توفر عليك ٥٠د.ك :</div>
+                            <div class="options">
+                                `+ optionsTxt + `
+                            </div>
+                        </div>
+                        `;
+                        }
+
+
                     }
                     else if (element.type === "TEXT") {
                         cnt = `<div class="question-container ` + activeAddon + `">
@@ -227,7 +261,7 @@ function addAnswerTextCatted(questionId, answerInputId1, answerInputId2, answerI
     }
 }
 
-function addAnswerTextCattedFour(questionId, answerInputId1, answerInputId2, answerInputId3,answerInputId4, nextButtonId) {
+function addAnswerTextCattedFour(questionId, answerInputId1, answerInputId2, answerInputId3, answerInputId4, nextButtonId) {
     var answerTextCatted = _(answerInputId1).value + " - " + _(answerInputId2).value + " - " + _(answerInputId3).value + " - " + _(answerInputId4).value;
     answersMap.set(questionId, answerTextCatted);
     if (_(answerInputId1).value != null && _(answerInputId1).value.trim() != "" &&

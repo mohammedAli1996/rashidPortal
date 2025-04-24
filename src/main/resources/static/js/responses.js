@@ -90,6 +90,7 @@ function getData() {
 
 
             $('#datatable').DataTable({
+                "ordering": false, 
                 "language": {
                     "paginate": {
                         "previous": "<i class='mdi mdi-chevron-left'>",

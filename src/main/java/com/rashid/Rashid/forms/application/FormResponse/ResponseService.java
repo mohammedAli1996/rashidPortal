@@ -1,5 +1,6 @@
 package com.rashid.Rashid.forms.application.FormResponse;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +28,9 @@ public class ResponseService {
     
   
     public List<FormResponse> getAllResponses(){
-    	return responseRepository.findByDeletedFalse();
+    	List<FormResponse> all = responseRepository.findByDeletedFalse();
+    	Collections.reverse(all);
+    	return all;
     }
     
  
