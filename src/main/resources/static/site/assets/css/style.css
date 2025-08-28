@@ -23,7 +23,7 @@ Version: 1.0
   --primary-color: #b2022f
 }
 
-html{
+html {
   scroll-behavior: smooth;
 
 }
@@ -3079,7 +3079,7 @@ blockquote:before {
   margin-top: 0;
 }
 
-.second-card::before{
+.second-card::before {
   opacity: 1;
   margin-top: 0;
 }
@@ -7016,16 +7016,16 @@ body {
 
 }
 
-.card-desktop2 p{
+.card-desktop2 p {
   color: lightgray;
 }
 
-.card-desktop2 h3{
+.card-desktop2 h3 {
   font-weight: bold;
   color: #FFF;
 }
 
-.card-desktop2 span{
+.card-desktop2 span {
   color: var(--primary-color);
 
 }
@@ -7324,7 +7324,7 @@ body {
 } */
 
 
- .ribbon{
+.ribbon {
   width: 150px;
   height: 150px;
   position: absolute;
@@ -7332,8 +7332,9 @@ body {
   left: -10px;
   overflow: hidden;
 }
- .ribbon::before,
- .ribbon::after{
+
+.ribbon::before,
+.ribbon::after {
   position: absolute;
   content: "";
   z-index: -1;
@@ -7342,15 +7343,18 @@ body {
   border-top-color: transparent;
   border-left-color: transparent;
 }
- .ribbon::before{
+
+.ribbon::before {
   top: 0px;
   right: 13.5px;
 }
-.ribbon::after{
+
+.ribbon::after {
   bottom: 13px;
   left: 0px;
 }
- .ribbon span{
+
+.ribbon span {
   position: absolute;
   top: 30px;
   right: 0;
@@ -7362,38 +7366,152 @@ body {
   text-align: center;
   font-size: 17px;
   text-transform: uppercase;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.12);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.12);
 }
 
-.terms-sty{
+.terms-sty {
   color: var(--primary-color);
   font-weight: bold;
-  
+
 }
 
-.terms-txt{
+.terms-txt {
   font-size: 13px;
 }
 
-.subTitle{
+.subTitle {
   font-size: 16px;
   font-weight: bold;
   place-self: flex-start
 }
 
-.dot-sty{
+.dot-sty {
   font-weight: bolder;
   font-size: 18px;
 }
 
-.subContent{
+.subContent {
   place-self: flex-start
-
 }
 
 
-.specialOffer{
+.specialOffer {
   font-size: x-large;
   font-weight: 600;
   color: #dc3737;
+}
+
+
+
+
+.course-card {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  background: #fff;
+}
+
+.course-card:hover {
+  transform: translateY(-5px);
+}
+
+.course-img {
+  height: 180px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.instructor {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.instructor img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #6c63ff;
+}
+
+
+.course-card .card-title {
+  font-size: 1.25rem;
+  /* bigger title */
+  font-weight: 700;
+  /* bold */
+  text-align: center;
+  /* center text */
+  margin-bottom: 15px;
+  color: #333;
+  /* dark text for readability */
+  line-height: 1.6;
+}
+
+.course-card .card-text {
+  font-size: 1rem;
+  color: #555;
+  /* softer text color */
+  text-align: center;
+  /* center description */
+  line-height: 1.8;
+  /* more spacing between lines */
+}
+
+.course-card {
+  direction: rtl;
+}
+
+
+
+
+.review-card {
+  border-radius: 15px;
+  padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  height: 100%;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+}
+
+.review-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 3px solid  #b2022f;
+}
+
+.review-text {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.review-name {
+  font-weight: 700;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  color: #222;
+  text-align: center;
+}
+
+.review-img-wide {
+  width: 100%;
+  height: 220px;
+  border-radius: 12px;
+  object-fit: contain;
+  margin-bottom: 15px;
 }
